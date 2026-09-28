@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mission JRF Mock Test Portal</title>
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Canvas Confetti CDN -->
+    <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -23,33 +23,30 @@
             <h1 class="text-3xl sm:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
                 🎯 MISSION JRF MOCK TEST
             </h1>
-            <p class="text-gray-300 text-sm sm:text-base mt-2">Focus. Plan. Achieve. Discipline Today, Success Tomorrow.</p>
+            <p class="text-gray-300 text-sm sm:text-base mt-2">Psychology & Paper 1 Practice Engine</p>
         </header>
 
         <!-- Mode Selection Screen -->
         <div id="selection-screen" class="space-y-6">
-            <h2 class="text-xl font-semibold text-purple-200 text-center">Choose Your Mode:</h2>
+            <h2 class="text-xl font-semibold text-purple-200 text-center">Select Test Intensity:</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <!-- 10 Min -->
-                <button onclick="startTest(10, 5)" class="flex flex-col items-center p-5 bg-emerald-600/30 border border-emerald-500/40 hover:bg-emerald-600/50 rounded-xl transition-all transform hover:-translate-y-1">
+                <button onclick="startTest(10, 10)" class="flex flex-col items-center p-5 bg-emerald-600/30 border border-emerald-500/40 hover:bg-emerald-600/50 rounded-xl transition-all transform hover:-translate-y-1">
                     <span class="text-2xl mb-1">⚡</span>
                     <span class="font-bold text-lg text-emerald-300">10 Mins</span>
                     <span class="text-xs text-gray-300 mt-1">Light Intensity</span>
-                    <span class="text-xs text-emerald-200 mt-2 font-mono">5 Questions</span>
+                    <span class="text-xs text-emerald-200 mt-2 font-mono">10 Questions</span>
                 </button>
-                <!-- 30 Min -->
-                <button onclick="startTest(30, 15)" class="flex flex-col items-center p-5 bg-amber-600/30 border border-amber-500/40 hover:bg-amber-600/50 rounded-xl transition-all transform hover:-translate-y-1">
+                <button onclick="startTest(30, 20)" class="flex flex-col items-center p-5 bg-amber-600/30 border border-amber-500/40 hover:bg-amber-600/50 rounded-xl transition-all transform hover:-translate-y-1">
                     <span class="text-2xl mb-1">🔥</span>
                     <span class="font-bold text-lg text-amber-300">30 Mins</span>
                     <span class="text-xs text-gray-300 mt-1">Medium Intensity</span>
-                    <span class="text-xs text-amber-200 mt-2 font-mono">15 Questions</span>
+                    <span class="text-xs text-amber-200 mt-2 font-mono">20 Questions</span>
                 </button>
-                <!-- 60 Min -->
-                <button onclick="startTest(60, 30)" class="flex flex-col items-center p-5 bg-rose-600/30 border border-rose-500/40 hover:bg-rose-600/50 rounded-xl transition-all transform hover:-translate-y-1">
+                <button onclick="startTest(60, 35)" class="flex flex-col items-center p-5 bg-rose-600/30 border border-rose-500/40 hover:bg-rose-600/50 rounded-xl transition-all transform hover:-translate-y-1">
                     <span class="text-2xl mb-1">💣</span>
                     <span class="font-bold text-lg text-rose-300">60 Mins</span>
                     <span class="text-xs text-gray-300 mt-1">High Intensity</span>
-                    <span class="text-xs text-rose-200 mt-2 font-mono">30 Questions</span>
+                    <span class="text-xs text-rose-200 mt-2 font-mono">35 Questions</span>
                 </button>
             </div>
             <div class="text-center text-xs text-purple-300/60 pt-4">
@@ -59,7 +56,6 @@
 
         <!-- Quiz Screen -->
         <div id="quiz-screen" class="hidden">
-            <!-- Stats Bar -->
             <div class="flex justify-between items-center mb-6 bg-slate-900/60 p-4 rounded-xl border border-purple-500/30">
                 <div>
                     <span class="text-xs text-gray-400 block">Question</span>
@@ -71,18 +67,13 @@
                 </div>
             </div>
 
-            <!-- Question Card -->
             <div class="bg-slate-900/40 p-6 rounded-xl border border-slate-700 mb-6">
                 <span id="q-category" class="text-xs font-semibold px-2.5 py-0.5 rounded bg-purple-900 text-purple-300 border border-purple-700 uppercase tracking-wider mb-3 inline-block">Topic</span>
-                <p id="q-text" class="text-lg font-medium text-slate-100 mt-1">Question text goes here...</p>
+                <p id="q-text" class="text-lg font-medium text-slate-100 mt-1">Question loading...</p>
             </div>
 
-            <!-- Options -->
-            <div id="options-container" class="space-y-3 mb-8">
-                <!-- Buttons injected dynamically -->
-            </div>
+            <div id="options-container" class="space-y-3 mb-8"></div>
 
-            <!-- Navigation Controls -->
             <div class="flex justify-between items-center">
                 <button id="prev-btn" onclick="navigate(-1)" class="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm font-semibold transition">Previous</button>
                 <button id="next-btn" onclick="navigate(1)" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 rounded-lg text-sm font-semibold transition">Next</button>
@@ -117,63 +108,84 @@
     </div>
 
     <script>
-        // QUESTION BANK (Mixed Paper 1 & High-Yield Psychology)
-        const masterQuestions = [
-            // Paper 1 - Communication
-            { topic: "Paper 1: Communication", question: "Which type of communication involves body language, gestures, and facial expressions?", options: ["Verbal", "Non-verbal", "Classroom", "Mass-Media"], answer: 1 },
-            { topic: "Paper 1: Communication", question: "Noise, language difference, and psychological stress are examples of what in communication?", options: ["Feedback", "Barriers", "Encoding", "Decoding"], answer: 1 },
-            
-            // Paper 1 - Mathematical Reasoning
-            { topic: "Paper 1: Math & Reasoning", question: "If the cost price of an item is ₹200 and it is sold for ₹250, what is the profit percentage?", options: ["20%", "25%", "15%", "30%"], answer: 1 },
-            { topic: "Paper 1: Math & Reasoning", question: "What comes next in the series: 2, 4, 8, 16, ___?", options: ["24", "32", "20", "64"], answer: 1 },
+        // COMPLETE UGC-NET PSYCHOLOGY (UNITS 1-10) + PAPER 1 QUESTION BANK
+        const rawQuestionBank = [
+            // --- PAPER 1 ---
+            { topic: "Paper 1: Communication", question: "Which barrier occurs due to specialized technical terms or ambiguous language usage?", options: ["Linguistic/Semantic Barrier", "Psychological Barrier", "Physical Barrier", "Environmental Barrier"], answer: 0 },
+            { topic: "Paper 1: Communication", question: "In classroom teaching, what element allows the instructor to adjust pace and ensure understanding?", options: ["Feedback", "Encoding", "Channel Noise", "Mass Media"], answer: 0 },
+            { topic: "Paper 1: Logical Reasoning", question: "In Indian Logic (Nyaya), which Pramana refers to knowledge gained through comparison and analogy?", options: ["Upamana", "Pratyaksha", "Anumana", "Arthapatti"], answer: 0 },
+            { topic: "Paper 1: Logical Reasoning", question: "What represents the invariable relation between the middle term (Hetu) and major term (Sadhya)?", options: ["Vyapti", "Pramana", "Anupalabdhi", "Shabda"], answer: 0 },
+            { topic: "Paper 1: ICT", question: "Which national initiative provides digital repository access to millions of e-journals and articles?", options: ["e-ShodhSindhu", "SWAYAM", "DIKSHA", "NPTEL"], answer: 0 },
 
-            // Paper 1 - Logical Reasoning
-            { topic: "Paper 1: Logical Reasoning", question: "Which Pramana in Indian Logic refers to knowledge gained through perception?", options: ["Anumana", "Pratyaksha", "Upamana", "Shabda"], answer: 1 },
-            { topic: "Paper 1: Logical Reasoning", question: "A statement where the predicate term is denied of the subject term is called?", options: ["Universal Affirmative", "Particular Affirmative", "Universal Negative", "Particular Negative"], answer: 2 },
+            // --- PSYCHOLOGY UNIT 1: Emergence of Psychology ---
+            { topic: "Psychology Unit 1", question: "Which Eastern system emphasizes self-knowledge, Vidya vs. Avidya, and the concept of Nishkama Karma?", options: ["Bhagavad Gita", "Behaviorism", "Structuralism", "Logical Empiricism"], answer: 0 },
+            { topic: "Psychology Unit 1", question: "Who among the following is associated with establishing the foundational path of Hermeneutics / Descriptive Psychology?", options: ["Wilhelm Dilthey", "Edward Titchener", "John B. Watson", "B.F. Skinner"], answer: 0 },
 
-            // Paper 1 - Data Interpretation
-            { topic: "Paper 1: Data Interpretation", question: "Which chart is best suited for showing proportional parts of a whole dataset?", options: ["Line-chart", "Bar-chart", "Pie-chart", "Histogram"], answer: 2 },
+            // --- PSYCHOLOGY UNIT 2: Research Methodology & Statistics ---
+            { topic: "Psychology Unit 2", question: "Which non-parametric test is the equivalent of the one-way independent ANOVA?", options: ["Kruskal-Wallis test", "Mann-Whitney test", "Wilcoxon Signed Rank test", "Friedman test"], answer: 0 },
+            { topic: "Psychology Unit 2", question: "When analyzing variance with two independent categorical variables and one continuous dependent variable, which design is used?", options: ["Factorial ANOVA", "One-way ANOVA", "Simple Linear Regression", "Chi-Square Test"], answer: 0 },
 
-            // Paper 1 - ICT
-            { topic: "Paper 1: ICT", question: "What does the abbreviation HTTP stand for?", options: ["HyperText Transfer Protocol", "HighText Transfer Path", "HyperTransfer Text Process", "HyperText Timing Protocol"], answer: 0 },
-            { topic: "Paper 1: ICT", question: "Which of the following is an example of an asynchronous learning platform in higher education?", options: ["Live Zoom Class", "Pre-recorded Video Lectures", "Real-time Chat", "Webinar"], answer: 1 },
+            // --- PSYCHOLOGY UNIT 3: Psychological Testing ---
+            { topic: "Psychology Unit 3", question: "Which attitude measurement scale utilizes bipoles with 7-point rating categories (e.g., Good vs. Bad)?", options: ["Semantic Differential Scale", "Likert Scale", "Guttman Scale", "Stapel Scale"], answer: 0 },
+            { topic: "Psychology Unit 3", question: "The extent to which test items adequately sample the domain of interest refers to:", options: ["Content Validity", "Criterion Validity", "Test-Retest Reliability", "Split-Half Reliability"], answer: 0 },
 
-            // Psychology Unit 1 & 2
-            { topic: "Psychology: Unit 1 & 2", question: "In Jainism and Buddhism philosophy, what is emphasized as a core aspect of mind and consciousness?", options: ["Factor Analysis", "Self-realization & Mindfulness", "Regression Analysis", "Linear Equations"], answer: 1 },
-            { topic: "Psychology: Unit 1 & 2", question: "Factor Analysis (F.A.) and Regression are primarily used for which type of scientific research?", options: ["Qualitative Narrative", "Statistical Modeling & Prediction", "Syllogism", "Historical Comparison"], answer: 1 },
+            // --- PSYCHOLOGY UNIT 4: Biological Basis of Behavior ---
+            { topic: "Psychology Unit 4", question: "Which brain structure acts as the relay station for all sensory modalities except olfaction?", options: ["Thalamus", "Hypothalamus", "Amydgala", "Hippocampus"], answer: 0 },
+            { topic: "Psychology Unit 4", question: "Which neurotransmitter is primarily implicated in Parkinson's disease due to degeneration in the substantia nigra?", options: ["Dopamine", "Serotonin", "GABA", "Acetylcholine"], answer: 0 },
 
-            // Psychology Unit 3 & 4
-            { topic: "Psychology: Unit 3 & 4", question: "In the auditory processing pathway, signals travel from the cochlea through which brainstem structure?", options: ["Superior Olive & Inferior Colliculus", "Occipital Lobe", "Prefrontal Cortex", "Motor Cortex"], answer: 0 },
-            { topic: "Psychology: Unit 3 & 4", question: "Which hormone is commonly associated with sleep-wake cycle regulation?", options: ["Melatonin", "Thyroxine", "Insulin", "Estrogen"], answer: 0 },
+            // --- PSYCHOLOGY UNIT 5: Attention, Perception, Learning, Memory ---
+            { topic: "Psychology Unit 5", question: "In Signal Detection Theory, what term describes identifying a signal when no signal was actually present?", options: ["False Alarm", "Hit", "Miss", "Correct Rejection"], answer: 0 },
+            { topic: "Psychology Unit 5", question: "Which reinforcement schedule produces the highest resistance to extinction (e.g., slot machines)?", options: ["Variable Ratio", "Fixed Ratio", "Fixed Interval", "Variable Interval"], answer: 0 },
 
-            // Psychology Unit 5 & 6
-            { topic: "Psychology: Unit 5 & 6", question: "Howard Gardner's theory proposes that intelligence is:", options: ["A single g-factor", "Multiple independent intelligences", "Only verbal and spatial", "Static across lifetime"], answer: 1 },
-            { topic: "Psychology: Unit 5 & 6", question: "Which memory stage holds sensory information for less than a second?", options: ["Short-term Memory", "Sensory Memory", "Long-term Memory", "Working Memory"], answer: 1 },
+            // --- PSYCHOLOGY UNIT 6: Thinking, Intelligence & Creativity ---
+            { topic: "Psychology Unit 6", question: "Which theory of intelligence proposes the PASS model (Planning, Attention, Simultaneous, Successive)?", options: ["Das, Kar, & Parrila Model", "Gardner Multiple Intelligences", "Cattell Fluid/Crystallized", "Sternberg Triarchic Theory"], answer: 0 },
+            { topic: "Psychology Unit 6", question: "Guilford's Structure of Intellect (SOI) model classifies abilities across which three dimensions?", options: ["Operations, Contents, Products", "Fluid, Crystallized, General", "Verbal, Performance, Spatial", "Componential, Experiential, Contextual"], answer: 0 },
 
-            // Psychology Unit 7 & 8
-            { topic: "Psychology: Unit 7 & 8", question: "Which technique is widely used for stress reduction by focusing on muscle tension-release?", options: ["Progressive Muscle Relaxation (PMR)", "Factor Analysis", "Vyapti", "Denotation"], answer: 0 },
-            { topic: "Psychology: Unit 7 & 8", question: "Transformational and Transactional leadership are key concepts in which topic?", options: ["Perception Theory", "Leadership Theories", "Language Development", "ICT Governance"], answer: 1 },
+            // --- PSYCHOLOGY UNIT 7: Personality, Motivation, Emotion, Stress ---
+            { topic: "Psychology Unit 7", question: "Which stress management intervention involves conscious voluntary relaxation of major skeletal muscle groups?", options: ["Progressive Muscle Relaxation (PMR)", "Biofeedback", "Stress Inoculation Training", "Systematic Desensitization"], answer: 0 },
+            { topic: "Psychology Unit 7", question: "Which theory proposes that physiological arousal and emotional experience occur simultaneously?", options: ["Cannon-Bard Theory", "James-Lange Theory", "Schachter-Singer Two-Factor", "Lazarus Cognitive Mediational"], answer: 0 },
 
-            // Psychology Unit 9 & 10
-            { topic: "Psychology: Unit 9 & 10", question: "Gerard Egan’s Skilled Helper Model is widely applied in which field?", options: ["Counselling & Therapy", "Data Interpretation", "Venn Diagrams", "Classroom Communication"], answer: 0 },
-            { topic: "Psychology: Unit 9 & 10", question: "In VIA (Values in Action) classification, how many character strengths and virtues are identified?", options: ["24 Strengths across 6 Virtues", "10 Strengths across 2 Virtues", "5 Strengths across 5 Virtues", "12 Strengths across 4 Virtues"], answer: 0 }
+            // --- PSYCHOLOGY UNIT 8: Social Psychology ---
+            { topic: "Psychology Unit 8", question: "What phenomenon describes individuals expending less effort when working collectively in a group compared to working individually?", options: ["Social Loafing", "Social Facilitation", "Groupthink", "Deindividuation"], answer: 0 },
+            { topic: "Psychology Unit 8", question: "Festinger's Cognitive Dissonance Theory states that psychological discomfort arises from:", options: ["Inconsistency between two cognitions or beliefs", "Lack of social power", "External locus of control", "Low self-efficacy"], answer: 0 },
+
+            // --- PSYCHOLOGY UNIT 9: Human Development & Interventions ---
+            { topic: "Psychology Unit 9", question: "Gerard Egan’s 'Skilled Helper' model of counseling consists of how many primary stages?", options: ["3 Stages (Current, Preferred, Action)", "5 Stages (Intake to Termination)", "2 Stages (Diagnosis and Therapy)", "4 Stages (Assessment, Goal, Action, Evaluation)"], answer: 0 },
+            { topic: "Psychology Unit 9", question: "Which cognitive therapy technique developed by Albert Ellis focuses on challenging irrational beliefs (ABCDE model)?", options: ["Rational Emotive Behavior Therapy (REBT)", "Mindfulness-Based Stress Reduction", "Dialectical Behavior Therapy", "Acceptance and Commitment Therapy"], answer: 0 },
+
+            // --- PSYCHOLOGY UNIT 10: Emerging Areas ---
+            { topic: "Psychology Unit 10", question: "Which term refers to psychological growth and positive transformation experienced following trauma?", options: ["Post-Traumatic Growth", "Eudaimonic Well-being", "Resilience", "Hedonic Treadmill"], answer: 0 },
+            { topic: "Psychology Unit 10", question: "The study of interactions between psychological processes, nervous system, and immune system is known as:", options: ["Psychoneuroimmunology", "Neuroplasticity", "Social Constructionism", "Transpersonal Psychology"], answer: 0 }
         ];
 
-        // App State
         let currentQuestions = [];
         let userAnswers = {};
         let currentIndex = 0;
         let timerInterval = null;
         let totalTimeSeconds = 0;
+        let selectedDuration = 0;
 
         function startTest(durationMins, numQuestions) {
-            // Shuffle & select questions
-            let shuffled = [...masterQuestions].sort(() => 0.5 - Math.random());
-            currentQuestions = shuffled.slice(0, Math.min(numQuestions, masterQuestions.length));
+            selectedDuration = durationMins;
+            
+            // Shuffle questions and options dynamically
+            let shuffled = [...rawQuestionBank].sort(() => 0.5 - Math.random());
+            let rawSelected = shuffled.slice(0, Math.min(numQuestions, rawQuestionBank.length));
+            
+            currentQuestions = rawSelected.map(q => {
+                let optionsWithIndex = q.options.map((opt, i) => ({ text: opt, isCorrect: i === q.answer }));
+                optionsWithIndex.sort(() => 0.5 - Math.random());
+                return {
+                    topic: q.topic,
+                    question: q.question,
+                    options: optionsWithIndex.map(o => o.text),
+                    answer: optionsWithIndex.findIndex(o => o.isCorrect)
+                };
+            });
+
             userAnswers = {};
             currentIndex = 0;
 
-            // Timer Setup
             totalTimeSeconds = durationMins * 60;
             updateTimerDisplay();
             clearInterval(timerInterval);
@@ -186,7 +198,6 @@
                 }
             }, 1000);
 
-            // UI Switch
             document.getElementById('selection-screen').classList.add('hidden');
             document.getElementById('quiz-screen').classList.remove('hidden');
             renderQuestion();
@@ -219,7 +230,6 @@
             });
             document.getElementById('options-container').innerHTML = optionsHtml;
 
-            // Controls visibility
             document.getElementById('prev-btn').style.visibility = currentIndex === 0 ? 'hidden' : 'visible';
             if (currentIndex === currentQuestions.length - 1) {
                 document.getElementById('next-btn').classList.add('hidden');
@@ -252,6 +262,15 @@
 
             let percentage = Math.round((correctCount / currentQuestions.length) * 100);
 
+            // LOG TEST SCORE TO RENDER LOGS
+            console.log("==========================================");
+            console.log("📊 NEW TEST COMPLETED BY USER:");
+            console.log(`⏰ Time: ${new Date().toLocaleString()}`);
+            console.log(`⏱️ Duration: ${selectedDuration} Mins`);
+            console.log(`📝 Score: ${correctCount}/${currentQuestions.length} (${percentage}%)`);
+            console.log(`🎯 Status: ${percentage >= 80 ? 'PASSED (≥80%)' : 'FAILED (<80%)'}`);
+            console.log("==========================================");
+
             document.getElementById('quiz-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
 
@@ -270,7 +289,6 @@
                 msg.innerText = 'Ab tum ek baat puch sakti ho 🤪';
                 msg.className = 'text-xl sm:text-2xl font-bold my-4 p-4 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
 
-                // Trigger Confetti
                 confetti({
                     particleCount: 120,
                     spread: 70,
