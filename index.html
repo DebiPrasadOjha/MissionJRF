@@ -26,39 +26,34 @@
             <p class="text-gray-300 text-sm sm:text-base mt-2">Psychology & Paper 1 Practice Engine</p>
         </header>
 
-        <!-- Mode Selection Screen (5 MODES) -->
+        <!-- Mode Selection Screen -->
         <div id="selection-screen" class="space-y-6">
             <h2 class="text-xl font-semibold text-purple-200 text-center">Select Test Mode:</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Mode 1 -->
                 <button onclick="startTest('10min', 10, 10)" class="flex flex-col items-center p-5 bg-emerald-600/30 border border-emerald-500/40 hover:bg-emerald-600/50 rounded-xl transition-all transform hover:-translate-y-1">
                     <span class="text-2xl mb-1">⚡</span>
                     <span class="font-bold text-lg text-emerald-300">1. 10 Mins Speed Run</span>
                     <span class="text-xs text-gray-300 mt-1">Light Intensity</span>
                     <span class="text-xs text-emerald-200 mt-2 font-mono">10 Questions • 10 Mins</span>
                 </button>
-                <!-- Mode 2 -->
                 <button onclick="startTest('30min', 30, 20)" class="flex flex-col items-center p-5 bg-amber-600/30 border border-amber-500/40 hover:bg-amber-600/50 rounded-xl transition-all transform hover:-translate-y-1">
                     <span class="text-2xl mb-1">🔥</span>
                     <span class="font-bold text-lg text-amber-300">2. 30 Mins Practice</span>
                     <span class="text-xs text-gray-300 mt-1">Medium Intensity</span>
                     <span class="text-xs text-amber-200 mt-2 font-mono">20 Questions • 30 Mins</span>
                 </button>
-                <!-- Mode 3 -->
                 <button onclick="startTest('1hour', 60, 35)" class="flex flex-col items-center p-5 bg-rose-600/30 border border-rose-500/40 hover:bg-rose-600/50 rounded-xl transition-all transform hover:-translate-y-1">
                     <span class="text-2xl mb-1">💣</span>
                     <span class="font-bold text-lg text-rose-300">3. 1 Hour Power Test</span>
                     <span class="text-xs text-gray-300 mt-1">High Intensity</span>
                     <span class="text-xs text-rose-200 mt-2 font-mono">35 Questions • 60 Mins</span>
                 </button>
-                <!-- Mode 4 -->
                 <button onclick="startTest('psychology', 45, 25)" class="flex flex-col items-center p-5 bg-fuchsia-600/30 border border-fuchsia-500/50 hover:bg-fuchsia-600/50 rounded-xl transition-all transform hover:-translate-y-1 ring-2 ring-fuchsia-400/30">
                     <span class="text-2xl mb-1">🧠</span>
                     <span class="font-bold text-lg text-fuchsia-300">4. Only Psychology</span>
                     <span class="text-xs text-gray-300 mt-1">Paper 2 Focused</span>
                     <span class="text-xs text-fuchsia-200 mt-2 font-mono">25 Questions • 45 Mins</span>
                 </button>
-                <!-- Mode 5 -->
                 <button onclick="startTest('full_ugc', 120, 50)" class="flex flex-col items-center p-5 bg-cyan-600/30 border border-cyan-500/50 hover:bg-cyan-600/50 rounded-xl transition-all transform hover:-translate-y-1 ring-2 ring-cyan-400/30 sm:col-span-2 lg:col-span-1">
                     <span class="text-2xl mb-1">🏆</span>
                     <span class="font-bold text-lg text-cyan-300">5. Full UGC NET Replica</span>
@@ -141,138 +136,61 @@
     </div>
 
     <script>
-        // UPGRADED QUESTION BANK (PAPER 1 & PAPER 2 PSYCHOLOGY WITH MATCH LIST, CHRONOLOGY, MULTI-SELECT)
+        // EXPANDED QUESTION BANK WITH 50+ QUESTIONS (PAPER 1 & PAPER 2 PSYCHOLOGY)
         const fullQuestionBank = [
-            // PAPER 1 QUESTIONS
-            { 
-                paper: "Paper 1", 
-                topic: "Paper 1: Communication", 
-                question: "Which barrier occurs due to specialized technical terms or ambiguous language usage?", 
-                options: ["Linguistic/Semantic Barrier", "Psychological Barrier", "Physical Barrier", "Environmental Barrier"], 
-                answer: 0,
-                explanation: "Semantic barriers arise from misunderstandings caused by technical jargon, ambiguous words, or language differences."
-            },
-            { 
-                paper: "Paper 1", 
-                topic: "Paper 1: Logical Reasoning", 
-                question: "In Indian Logic (Nyaya), which Pramana refers to knowledge gained through comparison and analogy?", 
-                options: ["Upamana", "Pratyaksha", "Anumana", "Arthapatti"], 
-                answer: 0,
-                explanation: "Upamana means comparison or analogy (e.g., learning what a wild cow looks like based on its resemblance to a domestic cow)."
-            },
-            { 
-                paper: "Paper 1", 
-                topic: "Paper 1: ICT", 
-                question: "Which national initiative provides digital repository access to millions of e-journals and articles?", 
-                options: ["e-ShodhSindhu", "SWAYAM", "DIKSHA", "NPTEL"], 
-                answer: 0,
-                explanation: "e-ShodhSindhu provides access to qualitative higher education e-resources including full-text peer-reviewed journals."
-            },
+            // PAPER 1 QUESTIONS (15 Items)
+            { paper: "Paper 1", topic: "Paper 1: Communication", question: "Which barrier occurs due to specialized technical terms or ambiguous language usage?", options: ["Linguistic/Semantic Barrier", "Psychological Barrier", "Physical Barrier", "Environmental Barrier"], answer: 0, explanation: "Semantic barriers arise from misunderstandings caused by technical jargon or ambiguous language." },
+            { paper: "Paper 1", topic: "Paper 1: Logical Reasoning", question: "In Indian Logic (Nyaya), which Pramana refers to knowledge gained through comparison and analogy?", options: ["Upamana", "Pratyaksha", "Anumana", "Arthapatti"], answer: 0, explanation: "Upamana means comparison or analogy in classical Indian logic." },
+            { paper: "Paper 1", topic: "Paper 1: ICT", question: "Which national initiative provides digital repository access to millions of e-journals and articles?", options: ["e-ShodhSindhu", "SWAYAM", "DIKSHA", "NPTEL"], answer: 0, explanation: "e-ShodhSindhu provides access to qualitative higher education e-resources." },
+            { paper: "Paper 1", topic: "Paper 1: Teaching Aptitude", question: "Which evaluation system is conducted during the course of instruction to monitor student learning process?", options: ["Formative Evaluation", "Summative Evaluation", "Diagnostic Evaluation", "Placement Evaluation"], answer: 0, explanation: "Formative evaluation takes place during instruction to provide ongoing feedback." },
+            { paper: "Paper 1", topic: "Paper 1: Research Aptitude", question: "A sampling technique where every member of the population has an equal chance of selection is called:", options: ["Simple Random Sampling", "Quota Sampling", "Purposive Sampling", "Snowball Sampling"], answer: 0, explanation: "Simple random sampling is a probability sampling method giving equal probability to all units." },
+            { paper: "Paper 1", topic: "Paper 1: Higher Education", question: "Which ancient university was renowned as a world center for Buddhist studies and logic in Bihar?", options: ["Nalanda", "Takshashila", "Valabhi", "Vikramashila"], answer: 0, explanation: "Nalanda University was a famed ancient center of Buddhist learning." },
+            { paper: "Paper 1", topic: "Paper 1: People & Environment", question: "Which international agreement aims specifically at phasing out ozone-depleting substances?", options: ["Montreal Protocol", "Kyoto Protocol", "Paris Agreement", "Rio Declaration"], answer: 0, explanation: "The Montreal Protocol (1987) focuses on protecting the ozone layer by phasing out ODS." },
+            { paper: "Paper 1", topic: "Paper 1: ICT", question: "In modern computing networks, what does the protocol IPv6 use for addressing length?", options: ["128 bits", "32 bits", "64 bits", "256 bits"], answer: 0, explanation: "IPv6 uses 128-bit IP addresses allowing a vastly larger address space than 32-bit IPv4." },
+            { paper: "Paper 1", topic: "Paper 1: Mathematical Reasoning", question: "If the ratio of two numbers is 3:5 and their sum is 160, what is the value of the larger number?", options: ["100", "60", "90", "120"], answer: 0, explanation: "3x + 5x = 160 ➔ 8x = 160 ➔ x = 20. Larger number = 5 * 20 = 100." },
+            { paper: "Paper 1", topic: "Paper 1: Communication", question: "Which model of communication emphasizes two-way continuous interaction with concurrent encoding and decoding?", options: ["Transactional Model", "Linear Model", "Aristotelian Model", "Shannon-Weaver Model"], answer: 0, explanation: "Transactional model views communication as continuous, simultaneous sending and receiving." },
+            { paper: "Paper 1", topic: "Paper 1: Logical Reasoning", question: "What represents the invariable relation between the middle term (Hetu) and major term (Sadhya) in Nyaya?", options: ["Vyapti", "Pramana", "Anupalabdhi", "Pakshadharmata"], answer: 0, explanation: "Vyapti denotes the universal relation between Hetu (smoke) and Sadhya (fire)." },
+            { paper: "Paper 1", topic: "Paper 1: Teaching Aptitude", question: "According to Bloom's Revised Taxonomy, which cognitive process represents the highest level of thinking?", options: ["Creating", "Evaluating", "Analyzing", "Applying"], answer: 0, explanation: "In Anderson & Krathwohl's revision, 'Creating' replaces 'Evaluation' at the highest tier." },
+            { paper: "Paper 1", topic: "Paper 1: Research Aptitude", question: "When a researcher rejects a true null hypothesis (H0), which statistical error has occurred?", options: ["Type I Error", "Type II Error", "Standard Error", "Measurement Error"], answer: 0, explanation: "Type I error occurs when a true null hypothesis is incorrectly rejected (alpha error)." },
+            { paper: "Paper 1", topic: "Paper 1: People & Environment", question: "Which greenhouse gas has the highest global warming potential per molecule relative to CO2?", options: ["SF6 (Sulfur Hexafluoride)", "Methane", "Nitrous Oxide", "CFC-12"], answer: 0, explanation: "SF6 has an extremely high Global Warming Potential (over 23,000 times CO2 over 100 yrs)." },
+            { paper: "Paper 1", topic: "Paper 1: Data Interpretation", question: "The middle value in a set of ordered numerical observations is statistically termed as:", options: ["Median", "Mean", "Mode", "Variance"], answer: 0, explanation: "The median represents the exact middle point of an ordered dataset." },
 
-            // PAPER 2 PSYCHOLOGY QUESTIONS (UPGRADED NTA FORMATS)
-            { 
-                paper: "Paper 2", 
-                topic: "Psychology: Match List I & II", 
-                question: "Match List I (Psychological Theorists) with List II (Core Concepts):\n\nList I:\nA. Rollo May\nB. Viktor Frankl\nC. Carl Rogers\nD. Fritz Perls\n\nList II:\n1. Logotherapy\n2. Existential Anxiety\n3. Gestalt Therapy\n4. Unconditional Positive Regard", 
-                options: [
-                    "A-2, B-1, C-4, D-3",
-                    "A-1, B-2, C-3, D-4",
-                    "A-3, B-4, C-1, D-2",
-                    "A-2, B-3, C-4, D-1"
-                ], 
-                answer: 0,
-                explanation: "Rollo May conceptualized Existential Anxiety; Viktor Frankl developed Logotherapy; Carl Rogers introduced Unconditional Positive Regard; Fritz Perls founded Gestalt Therapy."
-            },
-            { 
-                paper: "Paper 2", 
-                topic: "Psychology: Chronological Sequence", 
-                question: "Arrange the following stages of Catecholamine Biosynthesis in the correct physiological sequence:\n\nA. Dopamine\nB. L-DOPA\nC. Tyrosine\nD. Norepinephrine", 
-                options: [
-                    "C ➔ B ➔ A ➔ D",
-                    "B ➔ C ➔ A ➔ D",
-                    "A ➔ B ➔ C ➔ D",
-                    "C ➔ A ➔ B ➔ D"
-                ], 
-                answer: 0,
-                explanation: "The biochemical pathway is: Tyrosine ➔ L-DOPA ➔ Dopamine ➔ Norepinephrine."
-            },
-            { 
-                paper: "Paper 2", 
-                topic: "Psychology: Multi-Select Combination", 
-                question: "Which of the following statements regarding the Central Limit Theorem (CLT) are CORRECT?\n\nA. As sample size increases, the sampling distribution approaches normality.\nB. The population must be strictly normally distributed for CLT to hold.\nC. Standard error decreases as sample size increases.\nD. Mean of the sampling distribution equals the population mean.", 
-                options: [
-                    "A, C and D only",
-                    "A and B only",
-                    "B, C and D only",
-                    "A and C only"
-                ], 
-                answer: 0,
-                explanation: "CLT applies regardless of population distribution provided sample size is large enough (n ≥ 30). Hence B is incorrect."
-            },
-            { 
-                paper: "Paper 2", 
-                topic: "Psychology: Research Methods", 
-                question: "In Factor Analysis, when factors are correlated in the real world, which factor rotation method mathematically allows non-orthogonal (correlated) factor axes?", 
-                options: ["Direct Oblimin / Promax", "Varimax", "Equamax", "Quartimax"], 
-                answer: 0,
-                explanation: "Direct Oblimin and Promax are oblique rotation methods that allow factors to correlate with each other."
-            },
-            { 
-                paper: "Paper 2", 
-                topic: "Psychology: Biological Basis", 
-                question: "During the absolute refractory period of a neuronal action potential, why is it physically impossible for another action potential to be initiated?", 
-                options: ["Voltage-gated Sodium (Na+) channels are completely inactivated", "Potassium (K+) channels are entirely closed", "Hyperpolarization has increased threshold voltage", "Neurotransmitters are completely depleted"], 
-                answer: 0,
-                explanation: "Inactivation gates of voltage-gated Na+ channels close rapidly during peak depolarization and cannot reopen until returning to resting state."
-            },
-            { 
-                paper: "Paper 2", 
-                topic: "Psychology: Testing & Psychometrics", 
-                question: "Which correlation technique correlates two variables when one is continuous and the other is a true natural dichotomy (e.g., Male/Female)?", 
-                options: ["Point-Biserial Correlation", "Biserial Correlation", "Tetrachoric Correlation", "Phi Coefficient"], 
-                answer: 0,
-                explanation: "Point-Biserial correlation is used when one variable is continuous and the other is a true natural dichotomy."
-            },
-            { 
-                paper: "Paper 2", 
-                topic: "Psychology: Perception", 
-                question: "In Signal Detection Theory, if an observer's criterion (beta) becomes extremely conservative, what predictable shift occurs in response probabilities?", 
-                options: ["Hits decrease and False Alarms decrease", "Hits increase and False Alarms increase", "Hits increase and Misses decrease", "False Alarms increase and Correct Rejections decrease"], 
-                answer: 0,
-                explanation: "A conservative criterion requires high certainty before saying 'Yes', reducing both False Alarms and Hits."
-            },
-            { 
-                paper: "Paper 2", 
-                topic: "Psychology: Social Psychology", 
-                question: "According to Tajfel & Turner's Social Identity Theory, when are individuals most likely to engage in Social Creativity rather than Individual Mobility?", 
-                options: ["When intergroup status boundaries are perceived as stable and impermeable", "When intergroup status boundaries are highly permeable", "When social identity is weak and personal identity is dominant", "When relative deprivation is completely absent"], 
-                answer: 0,
-                explanation: "Impermeable boundaries prevent individual mobility, prompting groups to redefine comparative dimensions (social creativity)."
-            },
-            { 
-                paper: "Paper 2", 
-                topic: "Psychology: Therapies & Interventions", 
-                question: "In Albert Ellis's REBT framework, what do 'D' and 'E' represent in the expanded ABCDE therapeutic intervention model?", 
-                options: ["Disputing irrational beliefs & Effective new philosophy/belief system", "Diagnostic assessment & Evaluative feedback", "Desensitization of phobia & Emotional catharsis", "Differential reinforcement & Extinction protocol"], 
-                answer: 0,
-                explanation: "D stands for Disputing irrational beliefs, and E stands for Effective new philosophy or cognitive restructuring."
-            },
-            { 
-                paper: "Paper 2", 
-                topic: "Psychology: Health Psychology", 
-                question: "In Psychoneuroimmunology, sustained chronic activation of the Hypothalamic-Pituitary-Adrenal (HPA) axis suppresses immune functioning primarily through the prolonged secretion of:", 
-                options: ["Cortisol (Glucocorticoids)", "Epinephrine", "Acetylcholine", "Melatonin"], 
-                answer: 0,
-                explanation: "Prolonged Cortisol elevation suppresses T-cell activation and antibody production, weakening immune defense."
-            },
-            { 
-                paper: "Paper 2", 
-                topic: "Psychology: Emergence & Paradigms", 
-                question: "In Integral Yoga and Indian Paradigms of Knowledge, how is the ontological transition from Avidya to Vidya primarily operationalized?", 
-                options: ["Direct inward realization of Self-Knowledge (Atman/Purusha) bypassing intellectual construct", "Empirical external experimentation via sensory verification", "Strict cognitive modification through S-R conditioning", "Statistical reduction of consciousness variables"], 
-                answer: 0,
-                explanation: "Indian paradigms view true liberation (Vidya) as direct internal intuitive realization of Self/Purusha."
-            }
+            // PAPER 2 PSYCHOLOGY QUESTIONS (35 Items)
+            { paper: "Paper 2", topic: "Psychology: Match List I & II", question: "Match List I (Psychological Theorists) with List II (Core Concepts):\n\nList I:\nA. Rollo May\nB. Viktor Frankl\nC. Carl Rogers\nD. Fritz Perls\n\nList II:\n1. Logotherapy\n2. Existential Anxiety\n3. Gestalt Therapy\n4. Unconditional Positive Regard", options: ["A-2, B-1, C-4, D-3", "A-1, B-2, C-3, D-4", "A-3, B-4, C-1, D-2", "A-2, B-3, C-4, D-1"], answer: 0, explanation: "Rollo May (Existential Anxiety), Viktor Frankl (Logotherapy), Carl Rogers (UPR), Fritz Perls (Gestalt Therapy)." },
+            { paper: "Paper 2", topic: "Psychology: Chronological Sequence", question: "Arrange the following stages of Catecholamine Biosynthesis in correct physiological order:\n\nA. Dopamine\nB. L-DOPA\nC. Tyrosine\nD. Norepinephrine", options: ["C ➔ B ➔ A ➔ D", "B ➔ C ➔ A ➔ D", "A ➔ B ➔ C ➔ D", "C ➔ A ➔ B ➔ D"], answer: 0, explanation: "Biosynthesis pathway: Tyrosine ➔ L-DOPA ➔ Dopamine ➔ Norepinephrine." },
+            { paper: "Paper 2", topic: "Psychology: Multi-Select Combination", question: "Which of the following statements regarding Central Limit Theorem (CLT) are CORRECT?\n\nA. As sample size increases, sampling distribution approaches normality.\nB. The population must be strictly normal for CLT to hold.\nC. Standard error decreases as sample size increases.\nD. Mean of sampling distribution equals population mean.", options: ["A, C and D only", "A and B only", "B, C and D only", "A and C only"], answer: 0, explanation: "CLT applies regardless of underlying population shape given a sufficient sample size (n ≥ 30)." },
+            { paper: "Paper 2", topic: "Psychology: Research Methods", question: "In Factor Analysis, when factors are correlated in the real world, which factor rotation method mathematically allows non-orthogonal factor axes?", options: ["Direct Oblimin / Promax", "Varimax", "Equamax", "Quartimax"], answer: 0, explanation: "Direct Oblimin and Promax are oblique rotations that allow factors to correlate." },
+            { paper: "Paper 2", topic: "Psychology: Biological Basis", question: "During the absolute refractory period of a neuronal action potential, why is another action potential impossible?", options: ["Voltage-gated Na+ channels are completely inactivated", "K+ channels are entirely closed", "Hyperpolarization has increased threshold voltage", "Neurotransmitters are completely depleted"], answer: 0, explanation: "Inactivation gates of voltage-gated Na+ channels cannot reopen until resting potential is restored." },
+            { paper: "Paper 2", topic: "Psychology: Testing & Psychometrics", question: "Which correlation technique correlates two variables when one is continuous and the other is a true natural dichotomy (e.g., Male/Female)?", options: ["Point-Biserial Correlation", "Biserial Correlation", "Tetrachoric Correlation", "Phi Coefficient"], answer: 0, explanation: "Point-Biserial correlation handles one continuous and one naturally dichotomous variable." },
+            { paper: "Paper 2", topic: "Psychology: Perception", question: "In Signal Detection Theory, if an observer's criterion (beta) becomes extremely conservative, what shift occurs in response probabilities?", options: ["Hits decrease and False Alarms decrease", "Hits increase and False Alarms increase", "Hits increase and Misses decrease", "False Alarms increase and Correct Rejections decrease"], answer: 0, explanation: "A conservative criterion requires high certainty, reducing both False Alarms and Hits." },
+            { paper: "Paper 2", topic: "Psychology: Social Psychology", question: "According to Tajfel & Turner's Social Identity Theory, when are individuals most likely to engage in Social Creativity rather than Individual Mobility?", options: ["When intergroup status boundaries are perceived as stable and impermeable", "When intergroup status boundaries are highly permeable", "When social identity is weak and personal identity is dominant", "When relative deprivation is completely absent"], answer: 0, explanation: "Impermeable boundaries restrict individual mobility, driving group-level social creativity." },
+            { paper: "Paper 2", topic: "Psychology: Therapies & Interventions", question: "In Albert Ellis's REBT framework, what do 'D' and 'E' represent in the expanded ABCDE therapeutic model?", options: ["Disputing irrational beliefs & Effective new philosophy/belief system", "Diagnostic assessment & Evaluative feedback", "Desensitization of phobia & Emotional catharsis", "Differential reinforcement & Extinction protocol"], answer: 0, explanation: "D = Disputing irrational beliefs, E = Effective new philosophy." },
+            { paper: "Paper 2", topic: "Psychology: Health Psychology", question: "In Psychoneuroimmunology, sustained chronic activation of the Hypothalamic-Pituitary-Adrenal (HPA) axis suppresses immune functioning primarily via prolonged secretion of:", options: ["Cortisol (Glucocorticoids)", "Epinephrine", "Acetylcholine", "Melatonin"], answer: 0, explanation: "Excess Cortisol inhibits T-cell activation and immune response." },
+            { paper: "Paper 2", topic: "Psychology: Emergence & Paradigms", question: "In Integral Yoga and Indian Paradigms of Knowledge, how is the ontological transition from Avidya to Vidya primarily operationalized?", options: ["Direct inward realization of Self-Knowledge (Atman/Purusha)", "Empirical external experimentation via sensory verification", "Strict cognitive modification through S-R conditioning", "Statistical reduction of consciousness variables"], answer: 0, explanation: "Indian psychology views Vidya as direct intuitive self-realization of Atman/Purusha." },
+            { paper: "Paper 2", topic: "Psychology: Learning & Memory", question: "Which neurotransmitter system in the nucleus accumbens plays the central role in reward prediction error and reinforcement learning?", options: ["Dopaminergic System", "Serotonergic System", "Cholinergic System", "GABAergic System"], answer: 0, explanation: "Dopamine signaling in mesolimbic pathways encodes reward prediction errors." },
+            { paper: "Paper 2", topic: "Psychology: Personality Models", question: "Which of the Big Five personality factors shows the highest negative correlation with burnout and emotion-regulation vulnerability?", options: ["Emotional Stability (Low Neuroticism)", "Conscientiousness", "Extraversion", "Agreeableness"], answer: 0, explanation: "High Emotional Stability protects against vulnerability to burnout and stress." },
+            { paper: "Paper 2", topic: "Psychology: Intelligence", question: "In J.P. Das's PASS Theory of Intelligence, which brain structure is primarily responsible for Planning and Executive Functions?", options: ["Prefrontal Cortex", "Occipito-Parietal Area", "Temporal Lobe", "Basal Ganglia"], answer: 0, explanation: "Planning and executive control in PASS model are mediated by the prefrontal cortex." },
+            { paper: "Paper 2", topic: "Psychology: Memory", question: "Failure to recall memories formed prior to a traumatic brain injury is clinically termed as:", options: ["Retrograde Amnesia", "Anterograde Amnesia", "Infantile Amnesia", "Source Amnesia"], answer: 0, explanation: "Retrograde amnesia is loss of memory for events occurring prior to the trauma." },
+            { paper: "Paper 2", topic: "Psychology: Statistics", question: "Which non-parametric test is the exact equivalent of the parametric One-Way Independent ANOVA?", options: ["Kruskal-Wallis Test", "Mann-Whitney U Test", "Wilcoxon Signed Rank Test", "Friedman Test"], answer: 0, explanation: "Kruskal-Wallis test compares >2 independent groups non-parametrically." },
+            { paper: "Paper 2", topic: "Psychology: Psychopathology", question: "In Dialectical Behavior Therapy (DBT), what represents the fundamental dialectical tension synthesized during treatment?", options: ["Radical Acceptance of reality vs. Drive for Change", "Unconscious conflict vs. Cognitive restructuring", "Classical conditioning vs. Operant extinction", "Ego defense vs. Id expression"], answer: 0, explanation: "DBT balances radical acceptance of current distress with behavioral change strategies." },
+            { paper: "Paper 2", topic: "Psychology: Attention", question: "Broadbent's Filter Theory of Attention posits that informational selection occurs at which stage of processing?", options: ["Early stage based on physical characteristics", "Late stage after semantic processing", "Attenuated stage based on threshold", "Response selection stage"], answer: 0, explanation: "Broadbent's early selection model filters stimuli based purely on physical characteristics." },
+            { paper: "Paper 2", topic: "Psychology: Social Psychology", question: "The phenomenon where group discussion strengthens the pre-existing average inclination of group members is called:", options: ["Group Polarization", "Groupthink", "Social Loafing", "Deindividuation"], answer: 0, explanation: "Group polarization causes attitudes to become more extreme following discussion." },
+            { paper: "Paper 2", topic: "Psychology: Developmental Psychology", question: "In Piagetian theory, the ability to mentally reverse actions and understand conservation emerges in which stage?", options: ["Concrete Operational Stage", "Preoperational Stage", "Sensorimotor Stage", "Formal Operational Stage"], answer: 0, explanation: "Conservation and reversibility are mastered in the Concrete Operational stage (7-11 yrs)." },
+            { paper: "Paper 2", topic: "Psychology: Emotion", question: "Which theory of emotion posits that physiological arousal and emotional experience occur simultaneously via thalamic routing?", options: ["Cannon-Bard Theory", "James-Lange Theory", "Schachter-Singer Two-Factor Theory", "Lazarus Cognitive Theory"], answer: 0, explanation: "Cannon-Bard theory states arousal and emotional experience occur simultaneously." },
+            { paper: "Paper 2", topic: "Psychology: Neurophysiology", question: "Primary motor cortex is localized in which specific anatomical area of the cerebral cortex?", options: ["Precentral Gyrus of Frontal Lobe", "Postcentral Gyrus of Parietal Lobe", "Superior Temporal Gyrus", "Calcarine Sulcus of Occipital Lobe"], answer: 0, explanation: "The primary motor cortex (Brodmann area 4) is located in the precentral gyrus." },
+            { paper: "Paper 2", topic: "Psychology: Cognitive Psychology", question: "Visual spatial sketchpad and phonological loop are components of working memory model proposed by:", options: ["Baddeley and Hitch", "Atkinson and Shiffrin", "Sperling", "Tulving"], answer: 0, explanation: "Baddeley and Hitch (1974) introduced the multi-component working memory model." },
+            { paper: "Paper 2", topic: "Psychology: Motivation", question: "According to Self-Determination Theory (Deci & Ryan), what are the three innate psychological needs?", options: ["Autonomy, Competence, Relatedness", "Power, Affiliation, Achievement", "Safety, Belonging, Esteem", "Physiological, Security, Self-Actualization"], answer: 0, explanation: "SDT identifies Autonomy, Competence, and Relatedness as essential needs." },
+            { paper: "Paper 2", topic: "Psychology: Statistics", question: "What is the square of the correlation coefficient ($r^2$) mathematically called?", options: ["Coefficient of Determination", "Coefficient of Alienation", "Standard Error of Estimate", "Covariance"], answer: 0, explanation: "$r^2$ represents the proportion of variance shared between two variables." },
+            { paper: "Paper 2", topic: "Psychology: Psychometrics", question: "Which reliability estimation method is most appropriate for measuring internal consistency in a test with multi-point items?", options: ["Cronbach's Alpha", "Kuder-Richardson 20 (KR-20)", "Test-Retest Reliability", "Parallel Forms Reliability"], answer: 0, explanation: "Cronbach's Alpha measures internal consistency for Likert/multi-point scale items." },
+            { paper: "Paper 2", topic: "Psychology: Clinical Psychology", question: "Waxy flexibility and negativism are classic catatonic symptoms associated with:", options: ["Schizophrenia Spectrum Disorders", "Bipolar I Disorder", "Major Depressive Disorder", "Dissociative Identity Disorder"], answer: 0, explanation: "Waxy flexibility (cerea flexibilitas) is a hallmark feature of catatonia." },
+            { paper: "Paper 2", topic: "Psychology: Match List I & II", question: "Match List I (Brain Structure) with List II (Primary Function):\n\nList I:\nA. Amygdala\nB. Hippocampus\nC. Cerebellum\nD. Hypothalamus\n\nList II:\n1. Consolidating Declarative Memory\n2. Emotional Processing & Fear Conditioning\n3. Homeostasis & Hormone Regulation\n4. Motor Coordination & Balance", options: ["A-2, B-1, C-4, D-3", "A-1, B-2, C-3, D-4", "A-4, B-3, C-2, D-1", "A-2, B-4, C-1, D-3"], answer: 0, explanation: "Amygdala (Fear/Emotion), Hippocampus (Declarative Memory), Cerebellum (Motor/Balance), Hypothalamus (Homeostasis)." },
+            { paper: "Paper 2", topic: "Psychology: Applied Psychology", question: "Gerard Egan’s 'Skilled Helper' model of counseling consists of how many primary stages?", options: ["3 Stages (Current, Preferred, Action)", "5 Stages (Intake to Termination)", "2 Stages (Diagnosis and Therapy)", "4 Stages (Assessment, Goal, Action, Evaluation)"], answer: 0, explanation: "Egan's model has 3 stages: Stage I (What's going on?), Stage II (What do I need?), Stage III (How do I get there?)." },
+            { paper: "Paper 2", topic: "Psychology: Well-being", question: "According to Ryff's Model of Psychological Well-being, which of the following is NOT one of the six dimensions?", options: ["Subjective Hedonic Pleasure", "Autonomy", "Environmental Mastery", "Personal Growth"], answer: 0, explanation: "Ryff's Eudaimonic model focuses on growth, autonomy, mastery, relationships, purpose, and self-acceptance, not hedonic pleasure." },
+            { paper: "Paper 2", topic: "Psychology: Learning", question: "In Classical Conditioning, when a CS is repeatedly presented without the US, leading to a decrease in CR, this process is called:", options: ["Extinction", "Spontaneous Recovery", "Stimulus Generalization", "Higher-Order Conditioning"], answer: 0, explanation: "Extinction occurs when the conditioned stimulus is presented repeatedly without the unconditioned stimulus." },
+            { paper: "Paper 2", topic: "Psychology: Perception", question: "The Phi Phenomenon and Stroboscopic Motion served as fundamental evidence for which school of psychology?", options: ["Gestalt Psychology", "Structuralism", "Functionalism", "Behaviorism"], answer: 0, explanation: "Wertheimer's study of the Phi phenomenon in 1912 laid the foundation for Gestalt psychology." },
+            { paper: "Paper 2", topic: "Psychology: Social Psychology", question: "Which cognitive bias describes the tendency to overattribute others' behaviors to internal disposition while underestimating situational factors?", options: ["Fundamental Attribution Error", "Self-Serving Bias", "Actor-Observer Bias", "Confirmation Bias"], answer: 0, explanation: "Fundamental Attribution Error involves overemphasizing internal traits for others' actions." },
+            { paper: "Paper 2", topic: "Psychology: Cognitive Psychology", question: "The Stroop Effect demonstrates interference in reaction time during task processing due to conflict between:", options: ["Automatic processing vs. Controlled processing", "Short-term memory vs. Long-term memory", "Sensory register vs. Working memory", "Episodic memory vs. Semantic memory"], answer: 0, explanation: "Stroop effect illustrates interference when reading words (automatic) conflicts with color naming (controlled)." },
+            { paper: "Paper 2", topic: "Psychology: Indian Psychology", question: "In Samkhya philosophy, which Guna is associated with activity, passion, motion, and stimulation?", options: ["Rajas", "Sattva", "Tamas", "Purusha"], answer: 0, explanation: "Rajas represents action, passion, and movement among the three Trigunas." }
         ];
 
         let currentQuestions = [];
