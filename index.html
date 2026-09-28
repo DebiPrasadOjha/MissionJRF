@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission JRF Mock Test Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-900 via-indigo-900 to-slate-900 min-h-screen text-white flex flex-col items-center justify-center p-4">
+
+    <!-- Container -->
+    <div class="w-full max-w-3xl bg-slate-800/80 backdrop-blur-md rounded-2xl p-6 sm:p-10 shadow-2xl border border-purple-500/20">
+
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
+                🎯 MISSION JRF MOCK TEST
+            </h1>
+            <p class="text-gray-300 text-sm sm:text-base mt-2">Focus. Plan. Achieve. Discipline Today, Success Tomorrow.</p>
+        </header>
+
+        <!-- Mode Selection Screen -->
+        <div id="selection-screen" class="space-y-6">
+            <h2 class="text-xl font-semibold text-purple-200 text-center">Choose Your Mode:</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- 10 Min -->
+                <button onclick="startTest(10, 5)" class="flex flex-col items-center p-5 bg-emerald-600/30 border border-emerald-500/40 hover:bg-emerald-600/50 rounded-xl transition-all transform hover:-translate-y-1">
+                    <span class="text-2xl mb-1">⚡</span>
+                    <span class="font-bold text-lg text-emerald-300">10 Mins</span>
+                    <span class="text-xs text-gray-300 mt-1">Light Intensity</span>
+                    <span class="text-xs text-emerald-200 mt-2 font-mono">5 Questions</span>
+                </button>
+                <!-- 30 Min -->
+                <button onclick="startTest(30, 15)" class="flex flex-col items-center p-5 bg-amber-600/30 border border-amber-500/40 hover:bg-amber-600/50 rounded-xl transition-all transform hover:-translate-y-1">
+                    <span class="text-2xl mb-1">🔥</span>
+                    <span class="font-bold text-lg text-amber-300">30 Mins</span>
+                    <span class="text-xs text-gray-300 mt-1">Medium Intensity</span>
+                    <span class="text-xs text-amber-200 mt-2 font-mono">15 Questions</span>
+                </button>
+                <!-- 60 Min -->
+                <button onclick="startTest(60, 30)" class="flex flex-col items-center p-5 bg-rose-600/30 border border-rose-500/40 hover:bg-rose-600/50 rounded-xl transition-all transform hover:-translate-y-1">
+                    <span class="text-2xl mb-1">💣</span>
+                    <span class="font-bold text-lg text-rose-300">60 Mins</span>
+                    <span class="text-xs text-gray-300 mt-1">High Intensity</span>
+                    <span class="text-xs text-rose-200 mt-2 font-mono">30 Questions</span>
+                </button>
+            </div>
+            <div class="text-center text-xs text-purple-300/60 pt-4">
+                Cut-off Criteria: <span class="font-bold text-purple-300">80% or Higher</span>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden">
+            <!-- Stats Bar -->
+            <div class="flex justify-between items-center mb-6 bg-slate-900/60 p-4 rounded-xl border border-purple-500/30">
+                <div>
+                    <span class="text-xs text-gray-400 block">Question</span>
+                    <span id="q-counter" class="font-bold text-lg text-purple-300">1 / 10</span>
+                </div>
+                <div>
+                    <span class="text-xs text-gray-400 block text-right">Time Remaining</span>
+                    <span id="timer" class="font-mono font-bold text-xl text-pink-400">00:00</span>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-slate-900/40 p-6 rounded-xl border border-slate-700 mb-6">
+                <span id="q-category" class="text-xs font-semibold px-2.5 py-0.5 rounded bg-purple-900 text-purple-300 border border-purple-700 uppercase tracking-wider mb-3 inline-block">Topic</span>
+                <p id="q-text" class="text-lg font-medium text-slate-100 mt-1">Question text goes here...</p>
+            </div>
+
+            <!-- Options -->
+            <div id="options-container" class="space-y-3 mb-8">
+                <!-- Buttons injected dynamically -->
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="flex justify-between items-center">
+                <button id="prev-btn" onclick="navigate(-1)" class="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm font-semibold transition">Previous</button>
+                <button id="next-btn" onclick="navigate(1)" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 rounded-lg text-sm font-semibold transition">Next</button>
+                <button id="submit-btn" onclick="submitQuiz()" class="hidden px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 rounded-lg text-sm font-bold transition shadow-lg">Submit Test</button>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen" class="hidden text-center py-6">
+            <div id="result-badge" class="text-6xl mb-4">🎉</div>
+            <h2 id="result-title" class="text-2xl sm:text-3xl font-extrabold mb-2"></h2>
+            <p id="result-message" class="text-xl font-bold my-4 p-4 rounded-xl"></p>
+            
+            <div class="bg-slate-900/60 p-6 rounded-xl my-6 border border-slate-700 inline-block w-full max-w-md">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-gray-400">Total Questions:</span>
+                    <span id="res-total" class="font-bold text-white">0</span>
+                </div>
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-gray-400">Correct Answers:</span>
+                    <span id="res-correct" class="font-bold text-emerald-400">0</span>
+                </div>
+                <div class="flex justify-between items-center border-t border-slate-700 pt-2 mt-2">
+                    <span class="text-gray-300 font-semibold">Your Score:</span>
+                    <span id="res-score" class="font-extrabold text-2xl text-purple-400">0%</span>
+                </div>
+            </div>
+
+            <button onclick="resetApp()" class="block mx-auto px-8 py-3 bg-purple-600 hover:bg-purple-500 rounded-xl font-bold transition shadow-lg">Try Another Test</button>
+        </div>
+
+    </div>
+
+    <script>
+        // QUESTION BANK (Mixed Paper 1 & High-Yield Psychology)
+        const masterQuestions = [
+            // Paper 1 - Communication
+            { topic: "Paper 1: Communication", question: "Which type of communication involves body language, gestures, and facial expressions?", options: ["Verbal", "Non-verbal", "Classroom", "Mass-Media"], answer: 1 },
+            { topic: "Paper 1: Communication", question: "Noise, language difference, and psychological stress are examples of what in communication?", options: ["Feedback", "Barriers", "Encoding", "Decoding"], answer: 1 },
+            
+            // Paper 1 - Mathematical Reasoning
+            { topic: "Paper 1: Math & Reasoning", question: "If the cost price of an item is ₹200 and it is sold for ₹250, what is the profit percentage?", options: ["20%", "25%", "15%", "30%"], answer: 1 },
+            { topic: "Paper 1: Math & Reasoning", question: "What comes next in the series: 2, 4, 8, 16, ___?", options: ["24", "32", "20", "64"], answer: 1 },
+
+            // Paper 1 - Logical Reasoning
+            { topic: "Paper 1: Logical Reasoning", question: "Which Pramana in Indian Logic refers to knowledge gained through perception?", options: ["Anumana", "Pratyaksha", "Upamana", "Shabda"], answer: 1 },
+            { topic: "Paper 1: Logical Reasoning", question: "A statement where the predicate term is denied of the subject term is called?", options: ["Universal Affirmative", "Particular Affirmative", "Universal Negative", "Particular Negative"], answer: 2 },
+
+            // Paper 1 - Data Interpretation
+            { topic: "Paper 1: Data Interpretation", question: "Which chart is best suited for showing proportional parts of a whole dataset?", options: ["Line-chart", "Bar-chart", "Pie-chart", "Histogram"], answer: 2 },
+
+            // Paper 1 - ICT
+            { topic: "Paper 1: ICT", question: "What does the abbreviation HTTP stand for?", options: ["HyperText Transfer Protocol", "HighText Transfer Path", "HyperTransfer Text Process", "HyperText Timing Protocol"], answer: 0 },
+            { topic: "Paper 1: ICT", question: "Which of the following is an example of an asynchronous learning platform in higher education?", options: ["Live Zoom Class", "Pre-recorded Video Lectures", "Real-time Chat", "Webinar"], answer: 1 },
+
+            // Psychology Unit 1 & 2
+            { topic: "Psychology: Unit 1 & 2", question: "In Jainism and Buddhism philosophy, what is emphasized as a core aspect of mind and consciousness?", options: ["Factor Analysis", "Self-realization & Mindfulness", "Regression Analysis", "Linear Equations"], answer: 1 },
+            { topic: "Psychology: Unit 1 & 2", question: "Factor Analysis (F.A.) and Regression are primarily used for which type of scientific research?", options: ["Qualitative Narrative", "Statistical Modeling & Prediction", "Syllogism", "Historical Comparison"], answer: 1 },
+
+            // Psychology Unit 3 & 4
+            { topic: "Psychology: Unit 3 & 4", question: "In the auditory processing pathway, signals travel from the cochlea through which brainstem structure?", options: ["Superior Olive & Inferior Colliculus", "Occipital Lobe", "Prefrontal Cortex", "Motor Cortex"], answer: 0 },
+            { topic: "Psychology: Unit 3 & 4", question: "Which hormone is commonly associated with sleep-wake cycle regulation?", options: ["Melatonin", "Thyroxine", "Insulin", "Estrogen"], answer: 0 },
+
+            // Psychology Unit 5 & 6
+            { topic: "Psychology: Unit 5 & 6", question: "Howard Gardner's theory proposes that intelligence is:", options: ["A single g-factor", "Multiple independent intelligences", "Only verbal and spatial", "Static across lifetime"], answer: 1 },
+            { topic: "Psychology: Unit 5 & 6", question: "Which memory stage holds sensory information for less than a second?", options: ["Short-term Memory", "Sensory Memory", "Long-term Memory", "Working Memory"], answer: 1 },
+
+            // Psychology Unit 7 & 8
+            { topic: "Psychology: Unit 7 & 8", question: "Which technique is widely used for stress reduction by focusing on muscle tension-release?", options: ["Progressive Muscle Relaxation (PMR)", "Factor Analysis", "Vyapti", "Denotation"], answer: 0 },
+            { topic: "Psychology: Unit 7 & 8", question: "Transformational and Transactional leadership are key concepts in which topic?", options: ["Perception Theory", "Leadership Theories", "Language Development", "ICT Governance"], answer: 1 },
+
+            // Psychology Unit 9 & 10
+            { topic: "Psychology: Unit 9 & 10", question: "Gerard Egan’s Skilled Helper Model is widely applied in which field?", options: ["Counselling & Therapy", "Data Interpretation", "Venn Diagrams", "Classroom Communication"], answer: 0 },
+            { topic: "Psychology: Unit 9 & 10", question: "In VIA (Values in Action) classification, how many character strengths and virtues are identified?", options: ["24 Strengths across 6 Virtues", "10 Strengths across 2 Virtues", "5 Strengths across 5 Virtues", "12 Strengths across 4 Virtues"], answer: 0 }
+        ];
+
+        // App State
+        let currentQuestions = [];
+        let userAnswers = {};
+        let currentIndex = 0;
+        let timerInterval = null;
+        let totalTimeSeconds = 0;
+
+        function startTest(durationMins, numQuestions) {
+            // Shuffle & select questions
+            let shuffled = [...masterQuestions].sort(() => 0.5 - Math.random());
+            currentQuestions = shuffled.slice(0, Math.min(numQuestions, masterQuestions.length));
+            userAnswers = {};
+            currentIndex = 0;
+
+            // Timer Setup
+            totalTimeSeconds = durationMins * 60;
+            updateTimerDisplay();
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                totalTimeSeconds--;
+                updateTimerDisplay();
+                if (totalTimeSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+
+            // UI Switch
+            document.getElementById('selection-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            renderQuestion();
+        }
+
+        function updateTimerDisplay() {
+            let mins = Math.floor(totalTimeSeconds / 60);
+            let secs = totalTimeSeconds % 60;
+            document.getElementById('timer').innerText = 
+                `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function renderQuestion() {
+            let q = currentQuestions[currentIndex];
+            document.getElementById('q-counter').innerText = `${currentIndex + 1} / ${currentQuestions.length}`;
+            document.getElementById('q-category').innerText = q.topic;
+            document.getElementById('q-text').innerText = q.question;
+
+            let optionsHtml = '';
+            q.options.forEach((opt, idx) => {
+                let isSelected = userAnswers[currentIndex] === idx;
+                optionsHtml += `
+                    <button onclick="selectOption(${idx})" class="w-full text-left p-4 rounded-xl border transition-all flex items-center justify-between ${isSelected ? 'bg-purple-600/40 border-purple-400 text-white shadow-lg' : 'bg-slate-800/60 border-slate-700 hover:bg-slate-700/60 text-slate-200'}">
+                        <span>${opt}</span>
+                        <span class="w-5 h-5 rounded-full border ${isSelected ? 'border-pink-400 bg-pink-500' : 'border-slate-500'} flex items-center justify-center text-xs">
+                            ${isSelected ? '✓' : ''}
+                        </span>
+                    </button>
+                `;
+            });
+            document.getElementById('options-container').innerHTML = optionsHtml;
+
+            // Controls visibility
+            document.getElementById('prev-btn').style.visibility = currentIndex === 0 ? 'hidden' : 'visible';
+            if (currentIndex === currentQuestions.length - 1) {
+                document.getElementById('next-btn').classList.add('hidden');
+                document.getElementById('submit-btn').classList.remove('hidden');
+            } else {
+                document.getElementById('next-btn').classList.remove('hidden');
+                document.getElementById('submit-btn').classList.add('hidden');
+            }
+        }
+
+        function selectOption(optIndex) {
+            userAnswers[currentIndex] = optIndex;
+            renderQuestion();
+        }
+
+        function navigate(dir) {
+            currentIndex += dir;
+            renderQuestion();
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+
+            let correctCount = 0;
+            currentQuestions.forEach((q, idx) => {
+                if (userAnswers[idx] === q.answer) {
+                    correctCount++;
+                }
+            });
+
+            let percentage = Math.round((correctCount / currentQuestions.length) * 100);
+
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-total').innerText = currentQuestions.length;
+            document.getElementById('res-correct').innerText = correctCount;
+            document.getElementById('res-score').innerText = `${percentage}%`;
+
+            let badge = document.getElementById('result-badge');
+            let title = document.getElementById('result-title');
+            let msg = document.getElementById('result-message');
+
+            if (percentage >= 80) {
+                badge.innerText = '🥳🎉';
+                title.innerText = 'CONGRATULATIONS!';
+                title.className = 'text-2xl sm:text-3xl font-extrabold text-emerald-400';
+                msg.innerText = 'Ab tum ek baat puch sakti ho 🤪';
+                msg.className = 'text-xl sm:text-2xl font-bold my-4 p-4 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+
+                // Trigger Confetti
+                confetti({
+                    particleCount: 120,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                badge.innerText = '🙈📚';
+                title.innerText = 'TEST COMPLETED';
+                title.className = 'text-2xl sm:text-3xl font-extrabold text-rose-400';
+                msg.innerText = 'Gadhedi padhai kar';
+                msg.className = 'text-xl sm:text-2xl font-bold my-4 p-4 rounded-xl bg-rose-500/20 text-rose-300 border border-rose-500/40';
+            }
+        }
+
+        function resetApp() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('selection-screen').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
