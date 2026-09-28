@@ -16,7 +16,7 @@
 <body class="bg-gradient-to-br from-purple-900 via-indigo-900 to-slate-900 min-h-screen text-white flex flex-col items-center justify-center p-4">
 
     <!-- Container -->
-    <div class="w-full max-w-3xl bg-slate-800/80 backdrop-blur-md rounded-2xl p-6 sm:p-10 shadow-2xl border border-purple-500/20">
+    <div class="w-full max-w-4xl bg-slate-800/80 backdrop-blur-md rounded-2xl p-6 sm:p-10 shadow-2xl border border-purple-500/20">
 
         <!-- Header -->
         <header class="text-center mb-8">
@@ -29,24 +29,31 @@
         <!-- Mode Selection Screen -->
         <div id="selection-screen" class="space-y-6">
             <h2 class="text-xl font-semibold text-purple-200 text-center">Select Test Intensity:</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <button onclick="startTest(10, 10)" class="flex flex-col items-center p-5 bg-emerald-600/30 border border-emerald-500/40 hover:bg-emerald-600/50 rounded-xl transition-all transform hover:-translate-y-1">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <button onclick="startTest(10, 10, false)" class="flex flex-col items-center p-5 bg-emerald-600/30 border border-emerald-500/40 hover:bg-emerald-600/50 rounded-xl transition-all transform hover:-translate-y-1">
                     <span class="text-2xl mb-1">⚡</span>
                     <span class="font-bold text-lg text-emerald-300">10 Mins</span>
                     <span class="text-xs text-gray-300 mt-1">Light Intensity</span>
                     <span class="text-xs text-emerald-200 mt-2 font-mono">10 Questions</span>
                 </button>
-                <button onclick="startTest(30, 20)" class="flex flex-col items-center p-5 bg-amber-600/30 border border-amber-500/40 hover:bg-amber-600/50 rounded-xl transition-all transform hover:-translate-y-1">
+                <button onclick="startTest(30, 20, false)" class="flex flex-col items-center p-5 bg-amber-600/30 border border-amber-500/40 hover:bg-amber-600/50 rounded-xl transition-all transform hover:-translate-y-1">
                     <span class="text-2xl mb-1">🔥</span>
                     <span class="font-bold text-lg text-amber-300">30 Mins</span>
                     <span class="text-xs text-gray-300 mt-1">Medium Intensity</span>
                     <span class="text-xs text-amber-200 mt-2 font-mono">20 Questions</span>
                 </button>
-                <button onclick="startTest(60, 35)" class="flex flex-col items-center p-5 bg-rose-600/30 border border-rose-500/40 hover:bg-rose-600/50 rounded-xl transition-all transform hover:-translate-y-1">
+                <button onclick="startTest(60, 35, false)" class="flex flex-col items-center p-5 bg-rose-600/30 border border-rose-500/40 hover:bg-rose-600/50 rounded-xl transition-all transform hover:-translate-y-1">
                     <span class="text-2xl mb-1">💣</span>
                     <span class="font-bold text-lg text-rose-300">60 Mins</span>
                     <span class="text-xs text-gray-300 mt-1">High Intensity</span>
                     <span class="text-xs text-rose-200 mt-2 font-mono">35 Questions</span>
+                </button>
+                <!-- NEW "ONLY PSYCHOLOGY" BUTTON -->
+                <button onclick="startTest(15, 15, true)" class="flex flex-col items-center p-5 bg-fuchsia-600/30 border border-fuchsia-500/50 hover:bg-fuchsia-600/50 rounded-xl transition-all transform hover:-translate-y-1 ring-2 ring-fuchsia-400/30">
+                    <span class="text-2xl mb-1">🧠</span>
+                    <span class="font-bold text-lg text-fuchsia-300">Only Psychology</span>
+                    <span class="text-xs text-gray-300 mt-1">Extreme Difficulty</span>
+                    <span class="text-xs text-fuchsia-200 mt-2 font-mono">15 Mins • 15 Questions</span>
                 </button>
             </div>
             <div class="text-center text-xs text-purple-300/60 pt-4">
@@ -108,54 +115,44 @@
     </div>
 
     <script>
-        // COMPLETE UGC-NET PSYCHOLOGY (UNITS 1-10) + PAPER 1 QUESTION BANK
-        const rawQuestionBank = [
-            // --- PAPER 1 ---
+        // GENERAL QUESTION BANK (PAPER 1 + PSYCHOLOGY)
+        const generalQuestionBank = [
+            // Paper 1
             { topic: "Paper 1: Communication", question: "Which barrier occurs due to specialized technical terms or ambiguous language usage?", options: ["Linguistic/Semantic Barrier", "Psychological Barrier", "Physical Barrier", "Environmental Barrier"], answer: 0 },
             { topic: "Paper 1: Communication", question: "In classroom teaching, what element allows the instructor to adjust pace and ensure understanding?", options: ["Feedback", "Encoding", "Channel Noise", "Mass Media"], answer: 0 },
             { topic: "Paper 1: Logical Reasoning", question: "In Indian Logic (Nyaya), which Pramana refers to knowledge gained through comparison and analogy?", options: ["Upamana", "Pratyaksha", "Anumana", "Arthapatti"], answer: 0 },
             { topic: "Paper 1: Logical Reasoning", question: "What represents the invariable relation between the middle term (Hetu) and major term (Sadhya)?", options: ["Vyapti", "Pramana", "Anupalabdhi", "Shabda"], answer: 0 },
             { topic: "Paper 1: ICT", question: "Which national initiative provides digital repository access to millions of e-journals and articles?", options: ["e-ShodhSindhu", "SWAYAM", "DIKSHA", "NPTEL"], answer: 0 },
-
-            // --- PSYCHOLOGY UNIT 1: Emergence of Psychology ---
+            // Standard Psychology
             { topic: "Psychology Unit 1", question: "Which Eastern system emphasizes self-knowledge, Vidya vs. Avidya, and the concept of Nishkama Karma?", options: ["Bhagavad Gita", "Behaviorism", "Structuralism", "Logical Empiricism"], answer: 0 },
-            { topic: "Psychology Unit 1", question: "Who among the following is associated with establishing the foundational path of Hermeneutics / Descriptive Psychology?", options: ["Wilhelm Dilthey", "Edward Titchener", "John B. Watson", "B.F. Skinner"], answer: 0 },
-
-            // --- PSYCHOLOGY UNIT 2: Research Methodology & Statistics ---
             { topic: "Psychology Unit 2", question: "Which non-parametric test is the equivalent of the one-way independent ANOVA?", options: ["Kruskal-Wallis test", "Mann-Whitney test", "Wilcoxon Signed Rank test", "Friedman test"], answer: 0 },
-            { topic: "Psychology Unit 2", question: "When analyzing variance with two independent categorical variables and one continuous dependent variable, which design is used?", options: ["Factorial ANOVA", "One-way ANOVA", "Simple Linear Regression", "Chi-Square Test"], answer: 0 },
-
-            // --- PSYCHOLOGY UNIT 3: Psychological Testing ---
             { topic: "Psychology Unit 3", question: "Which attitude measurement scale utilizes bipoles with 7-point rating categories (e.g., Good vs. Bad)?", options: ["Semantic Differential Scale", "Likert Scale", "Guttman Scale", "Stapel Scale"], answer: 0 },
-            { topic: "Psychology Unit 3", question: "The extent to which test items adequately sample the domain of interest refers to:", options: ["Content Validity", "Criterion Validity", "Test-Retest Reliability", "Split-Half Reliability"], answer: 0 },
-
-            // --- PSYCHOLOGY UNIT 4: Biological Basis of Behavior ---
             { topic: "Psychology Unit 4", question: "Which brain structure acts as the relay station for all sensory modalities except olfaction?", options: ["Thalamus", "Hypothalamus", "Amydgala", "Hippocampus"], answer: 0 },
-            { topic: "Psychology Unit 4", question: "Which neurotransmitter is primarily implicated in Parkinson's disease due to degeneration in the substantia nigra?", options: ["Dopamine", "Serotonin", "GABA", "Acetylcholine"], answer: 0 },
-
-            // --- PSYCHOLOGY UNIT 5: Attention, Perception, Learning, Memory ---
             { topic: "Psychology Unit 5", question: "In Signal Detection Theory, what term describes identifying a signal when no signal was actually present?", options: ["False Alarm", "Hit", "Miss", "Correct Rejection"], answer: 0 },
-            { topic: "Psychology Unit 5", question: "Which reinforcement schedule produces the highest resistance to extinction (e.g., slot machines)?", options: ["Variable Ratio", "Fixed Ratio", "Fixed Interval", "Variable Interval"], answer: 0 },
-
-            // --- PSYCHOLOGY UNIT 6: Thinking, Intelligence & Creativity ---
             { topic: "Psychology Unit 6", question: "Which theory of intelligence proposes the PASS model (Planning, Attention, Simultaneous, Successive)?", options: ["Das, Kar, & Parrila Model", "Gardner Multiple Intelligences", "Cattell Fluid/Crystallized", "Sternberg Triarchic Theory"], answer: 0 },
-            { topic: "Psychology Unit 6", question: "Guilford's Structure of Intellect (SOI) model classifies abilities across which three dimensions?", options: ["Operations, Contents, Products", "Fluid, Crystallized, General", "Verbal, Performance, Spatial", "Componential, Experiential, Contextual"], answer: 0 },
-
-            // --- PSYCHOLOGY UNIT 7: Personality, Motivation, Emotion, Stress ---
             { topic: "Psychology Unit 7", question: "Which stress management intervention involves conscious voluntary relaxation of major skeletal muscle groups?", options: ["Progressive Muscle Relaxation (PMR)", "Biofeedback", "Stress Inoculation Training", "Systematic Desensitization"], answer: 0 },
-            { topic: "Psychology Unit 7", question: "Which theory proposes that physiological arousal and emotional experience occur simultaneously?", options: ["Cannon-Bard Theory", "James-Lange Theory", "Schachter-Singer Two-Factor", "Lazarus Cognitive Mediational"], answer: 0 },
-
-            // --- PSYCHOLOGY UNIT 8: Social Psychology ---
             { topic: "Psychology Unit 8", question: "What phenomenon describes individuals expending less effort when working collectively in a group compared to working individually?", options: ["Social Loafing", "Social Facilitation", "Groupthink", "Deindividuation"], answer: 0 },
-            { topic: "Psychology Unit 8", question: "Festinger's Cognitive Dissonance Theory states that psychological discomfort arises from:", options: ["Inconsistency between two cognitions or beliefs", "Lack of social power", "External locus of control", "Low self-efficacy"], answer: 0 },
-
-            // --- PSYCHOLOGY UNIT 9: Human Development & Interventions ---
             { topic: "Psychology Unit 9", question: "Gerard Egan’s 'Skilled Helper' model of counseling consists of how many primary stages?", options: ["3 Stages (Current, Preferred, Action)", "5 Stages (Intake to Termination)", "2 Stages (Diagnosis and Therapy)", "4 Stages (Assessment, Goal, Action, Evaluation)"], answer: 0 },
-            { topic: "Psychology Unit 9", question: "Which cognitive therapy technique developed by Albert Ellis focuses on challenging irrational beliefs (ABCDE model)?", options: ["Rational Emotive Behavior Therapy (REBT)", "Mindfulness-Based Stress Reduction", "Dialectical Behavior Therapy", "Acceptance and Commitment Therapy"], answer: 0 },
+            { topic: "Psychology Unit 10", question: "Which term refers to psychological growth and positive transformation experienced following trauma?", options: ["Post-Traumatic Growth", "Eudaimonic Well-being", "Resilience", "Hedonic Treadmill"], answer: 0 }
+        ];
 
-            // --- PSYCHOLOGY UNIT 10: Emerging Areas ---
-            { topic: "Psychology Unit 10", question: "Which term refers to psychological growth and positive transformation experienced following trauma?", options: ["Post-Traumatic Growth", "Eudaimonic Well-being", "Resilience", "Hedonic Treadmill"], answer: 0 },
-            { topic: "Psychology Unit 10", question: "The study of interactions between psychological processes, nervous system, and immune system is known as:", options: ["Psychoneuroimmunology", "Neuroplasticity", "Social Constructionism", "Transpersonal Psychology"], answer: 0 }
+        // EXTREME DIFFICULTY PSYCHOLOGY QUESTION BANK (UNITS 1 - 10)
+        const toughPsychologyBank = [
+            { topic: "Psychology Unit 1: Emergence & Paradigms", question: "According to Wilhelm Dilthey's critique of the strict experimental-analytical paradigm (logical empiricism), what fundamental approach should human sciences (Geisteswissenschaften) adopt over causal explanation (Erklären)?", options: ["Verstehen (Empathetic Understanding)", "Reductive Positivism", "Nomothetic Verification", "Behavioral Operant Conditioning"], answer: 0 },
+            { topic: "Psychology Unit 1: Indian Psychology Paradigms", question: "In Integral Yoga and Indian Paradigms of Knowledge, how is the ontological transition from Avidya to Vidya primary operationalized?", options: ["Direct inward realization of Self-Knowledge (Atman/Purusha) bypassing intellectual construct", "Empirical external experimentation via sensory verification", "Strict cognitive modification through S-R conditioning", "Statistical reduction of consciousness variables"], answer: 0 },
+            { topic: "Psychology Unit 2: Advanced Statistics", question: "In Factor Analysis, when factors are correlated in the real world, which factor rotation method mathematically allows non-orthogonal (correlated) factor axes?", options: ["Direct Oblimin / Promax", "Varimax", "Equamax", "Quartimax"], answer: 0 },
+            { topic: "Psychology Unit 2: Research & Experimental Design", question: "When controlling for a continuous nuisance covariate while assessing group differences across multiple categorical independent variables, which statistical technique is mathematically appropriate?", options: ["ANCOVA (Analysis of Covariance)", "MANOVA", "Kruskal-Wallis Test", "Tetrachoric Correlation"], answer: 0 },
+            { topic: "Psychology Unit 3: Psychometrics & Testing", question: "Which specific correlation technique is mathematically designed to correlate two variables when one is a continuous variable and the other is a true natural dichotomy (e.g., Male/Female)?", options: ["Point-Biserial Correlation", "Biserial Correlation", "Tetrachoric Correlation", "Phi Coefficient"], answer: 0 },
+            { topic: "Psychology Unit 4: Biological Basis & Neurophysiology", question: "During the absolute refractory period of a neuronal action potential, why is it physically impossible for another action potential to be initiated regardless of stimulus strength?", options: ["Voltage-gated Sodium (Na+) channels are completely inactivated", "Potassium (K+) channels are entirely closed", "Hyperpolarization has increased threshold voltage", "Neurotransmitters are completely depleted at the presynaptic terminal"], answer: 0 },
+            { topic: "Psychology Unit 5: Perception & Signal Detection", question: "In Signal Detection Theory, if an observer's criterion (beta) becomes extremely conservative, what predictable shifts occur in their response probabilities?", options: ["Hits decrease and False Alarms decrease", "Hits increase and False Alarms increase", "Hits increase and Misses decrease", "False Alarms increase and Correct Rejections decrease"], answer: 0 },
+            { topic: "Psychology Unit 5: Learning & Neurophysiology", question: "Which cellular and synaptic phenomenon, involving NMDA receptor activation and calcium influx in the hippocampus, serves as the primary neural mechanism for Long-Term Potentiation (LTP)?", options: ["Retrograde signaling via Nitric Oxide and AMPA receptor insertion", "Inhibition of GABAergic interneurons only", "Degeneration of dendritic spines", "Depletion of presynaptic acetylcholine stores"], answer: 0 },
+            { topic: "Psychology Unit 6: Cognitive & Intelligence Models", question: "In J.P. Das's PASS Theory of Intelligence (based on Luria's neuro-psychological model), which brain structure is primarily responsible for Planning and Executive Control?", options: ["Prefrontal Cortex (Frontal Lobe)", "Occipito-Parietal Area", "Temporal Lobe", "Basal Ganglia"], answer: 0 },
+            { topic: "Psychology Unit 7: Motivation & Emotion Models", question: "According to Lazarus's Cognitive-Mediational Theory of Emotion, what occurs during 'Secondary Appraisal'?", options: ["Evaluation of personal coping options and resources to handle the stressor", "Assessment of whether the event is positive, irrelevant, or threatening", "Direct physiological autonomic arousal release without cognitive labeling", "Re-evaluation of the initial threat post-behavioral outcome"], answer: 0 },
+            { topic: "Psychology Unit 8: Advanced Social Psychology", question: "According to Tajfel & Turner's Social Identity Theory, under what specific social condition is an individual most likely to engage in Social Creativity strategies rather than Individual Mobility?", options: ["When intergroup status boundaries are perceived as stable and impermeable", "When intergroup status boundaries are highly permeable", "When social identity is weak and personal identity is dominant", "When relative deprivation is completely absent"], answer: 0 },
+            { topic: "Psychology Unit 9: Psychopathology & Interventions", question: "In Dialectical Behavior Therapy (DBT), what represents the fundamental dialectical tension that the therapist works to synthesize during treatment?", options: ["Radical Acceptance of reality vs. The drive for Change and behavioral transformation", "Unconscious conflict resolution vs. Cognitive restructuring", "Classical conditioning vs. Operant extinction", "Ego defense strengthening vs. Id expression"], answer: 0 },
+            { topic: "Psychology Unit 9: Counseling & Psychotherapy", question: "In Albert Ellis's REBT framework, what does the 'D' and 'E' stand for in the expanded ABCDE therapeutic intervention model?", options: ["Disputing irrational beliefs & Effective new philosophy/belief system", "Diagnostic assessment & Evaluative feedback", "Desensitization of phobia & Emotional catharsis", "Differential reinforcement & Extinction protocol"], answer: 0 },
+            { topic: "Psychology Unit 10: Health & Psychoneuroimmunology", question: "In Psychoneuroimmunology, sustained chronic activation of the Hypothalamic-Pituitary-Adrenal (HPA) axis suppresses immune functioning primarily through the prolonged secretion of:", options: ["Cortisol (Glucocorticoids)", "Epinephrine", "Acetylcholine", "Melatonin"], answer: 0 },
+            { topic: "Psychology Unit 10: Emerging Areas & Well-being", question: "According to Ryff's Model of Psychological Well-being (Eudaimonic perspective), which of the following is NOT one of the six core dimensions?", options: ["Subjective Hedonic Pleasure", "Autonomy", "Environmental Mastery", "Personal Growth"], answer: 0 }
         ];
 
         let currentQuestions = [];
@@ -164,13 +161,18 @@
         let timerInterval = null;
         let totalTimeSeconds = 0;
         let selectedDuration = 0;
+        let isOnlyPsychologyMode = false;
 
-        function startTest(durationMins, numQuestions) {
+        function startTest(durationMins, numQuestions, toughPsychOnly = false) {
             selectedDuration = durationMins;
+            isOnlyPsychologyMode = toughPsychOnly;
             
+            // Choose question pool based on mode
+            let sourceBank = toughPsychOnly ? toughPsychologyBank : generalQuestionBank;
+
             // Shuffle questions and options dynamically
-            let shuffled = [...rawQuestionBank].sort(() => 0.5 - Math.random());
-            let rawSelected = shuffled.slice(0, Math.min(numQuestions, rawQuestionBank.length));
+            let shuffled = [...sourceBank].sort(() => 0.5 - Math.random());
+            let rawSelected = shuffled.slice(0, Math.min(numQuestions, sourceBank.length));
             
             currentQuestions = rawSelected.map(q => {
                 let optionsWithIndex = q.options.map((opt, i) => ({ text: opt, isCorrect: i === q.answer }));
@@ -264,7 +266,7 @@
 
             // LOG TEST SCORE TO RENDER LOGS
             console.log("==========================================");
-            console.log("📊 NEW TEST COMPLETED BY USER:");
+            console.log(`📊 NEW TEST COMPLETED BY USER (${isOnlyPsychologyMode ? "ONLY PSYCHOLOGY MODE" : "GENERAL MODE"})`);
             console.log(`⏰ Time: ${new Date().toLocaleString()}`);
             console.log(`⏱️ Duration: ${selectedDuration} Mins`);
             console.log(`📝 Score: ${correctCount}/${currentQuestions.length} (${percentage}%)`);
