@@ -16,7 +16,7 @@
 <body class="bg-gradient-to-br from-purple-900 via-indigo-900 to-slate-900 min-h-screen text-white flex flex-col items-center justify-center p-4">
 
     <!-- Container -->
-    <div class="w-full max-w-4xl bg-slate-800/80 backdrop-blur-md rounded-2xl p-6 sm:p-10 shadow-2xl border border-purple-500/20">
+    <div class="w-full max-w-4xl bg-slate-800/80 backdrop-blur-md rounded-2xl p-6 sm:p-10 shadow-2xl border border-purple-500/20 my-6">
 
         <!-- Header -->
         <header class="text-center mb-8">
@@ -26,34 +26,44 @@
             <p class="text-gray-300 text-sm sm:text-base mt-2">Psychology & Paper 1 Practice Engine</p>
         </header>
 
-        <!-- Mode Selection Screen -->
+        <!-- Mode Selection Screen (5 MODES) -->
         <div id="selection-screen" class="space-y-6">
-            <h2 class="text-xl font-semibold text-purple-200 text-center">Select Test Intensity:</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <button onclick="startTest(10, 10, false)" class="flex flex-col items-center p-5 bg-emerald-600/30 border border-emerald-500/40 hover:bg-emerald-600/50 rounded-xl transition-all transform hover:-translate-y-1">
+            <h2 class="text-xl font-semibold text-purple-200 text-center">Select Test Mode:</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Mode 1 -->
+                <button onclick="startTest('10min', 10, 10)" class="flex flex-col items-center p-5 bg-emerald-600/30 border border-emerald-500/40 hover:bg-emerald-600/50 rounded-xl transition-all transform hover:-translate-y-1">
                     <span class="text-2xl mb-1">⚡</span>
-                    <span class="font-bold text-lg text-emerald-300">10 Mins</span>
+                    <span class="font-bold text-lg text-emerald-300">1. 10 Mins Speed Run</span>
                     <span class="text-xs text-gray-300 mt-1">Light Intensity</span>
-                    <span class="text-xs text-emerald-200 mt-2 font-mono">10 Questions</span>
+                    <span class="text-xs text-emerald-200 mt-2 font-mono">10 Questions • 10 Mins</span>
                 </button>
-                <button onclick="startTest(30, 20, false)" class="flex flex-col items-center p-5 bg-amber-600/30 border border-amber-500/40 hover:bg-amber-600/50 rounded-xl transition-all transform hover:-translate-y-1">
+                <!-- Mode 2 -->
+                <button onclick="startTest('30min', 30, 20)" class="flex flex-col items-center p-5 bg-amber-600/30 border border-amber-500/40 hover:bg-amber-600/50 rounded-xl transition-all transform hover:-translate-y-1">
                     <span class="text-2xl mb-1">🔥</span>
-                    <span class="font-bold text-lg text-amber-300">30 Mins</span>
+                    <span class="font-bold text-lg text-amber-300">2. 30 Mins Practice</span>
                     <span class="text-xs text-gray-300 mt-1">Medium Intensity</span>
-                    <span class="text-xs text-amber-200 mt-2 font-mono">20 Questions</span>
+                    <span class="text-xs text-amber-200 mt-2 font-mono">20 Questions • 30 Mins</span>
                 </button>
-                <button onclick="startTest(60, 35, false)" class="flex flex-col items-center p-5 bg-rose-600/30 border border-rose-500/40 hover:bg-rose-600/50 rounded-xl transition-all transform hover:-translate-y-1">
+                <!-- Mode 3 -->
+                <button onclick="startTest('1hour', 60, 35)" class="flex flex-col items-center p-5 bg-rose-600/30 border border-rose-500/40 hover:bg-rose-600/50 rounded-xl transition-all transform hover:-translate-y-1">
                     <span class="text-2xl mb-1">💣</span>
-                    <span class="font-bold text-lg text-rose-300">60 Mins</span>
+                    <span class="font-bold text-lg text-rose-300">3. 1 Hour Power Test</span>
                     <span class="text-xs text-gray-300 mt-1">High Intensity</span>
-                    <span class="text-xs text-rose-200 mt-2 font-mono">35 Questions</span>
+                    <span class="text-xs text-rose-200 mt-2 font-mono">35 Questions • 60 Mins</span>
                 </button>
-                <!-- NEW "ONLY PSYCHOLOGY" BUTTON -->
-                <button onclick="startTest(15, 15, true)" class="flex flex-col items-center p-5 bg-fuchsia-600/30 border border-fuchsia-500/50 hover:bg-fuchsia-600/50 rounded-xl transition-all transform hover:-translate-y-1 ring-2 ring-fuchsia-400/30">
+                <!-- Mode 4 -->
+                <button onclick="startTest('psychology', 45, 25)" class="flex flex-col items-center p-5 bg-fuchsia-600/30 border border-fuchsia-500/50 hover:bg-fuchsia-600/50 rounded-xl transition-all transform hover:-translate-y-1 ring-2 ring-fuchsia-400/30">
                     <span class="text-2xl mb-1">🧠</span>
-                    <span class="font-bold text-lg text-fuchsia-300">Only Psychology</span>
-                    <span class="text-xs text-gray-300 mt-1">Extreme Difficulty</span>
-                    <span class="text-xs text-fuchsia-200 mt-2 font-mono">15 Mins • 15 Questions</span>
+                    <span class="font-bold text-lg text-fuchsia-300">4. Only Psychology</span>
+                    <span class="text-xs text-gray-300 mt-1">Paper 2 Focused</span>
+                    <span class="text-xs text-fuchsia-200 mt-2 font-mono">25 Questions • 45 Mins</span>
+                </button>
+                <!-- Mode 5 -->
+                <button onclick="startTest('full_ugc', 120, 50)" class="flex flex-col items-center p-5 bg-cyan-600/30 border border-cyan-500/50 hover:bg-cyan-600/50 rounded-xl transition-all transform hover:-translate-y-1 ring-2 ring-cyan-400/30 sm:col-span-2 lg:col-span-1">
+                    <span class="text-2xl mb-1">🏆</span>
+                    <span class="font-bold text-lg text-cyan-300">5. Full UGC NET Replica</span>
+                    <span class="text-xs text-gray-300 mt-1">Paper 1 + Paper 2 Mixed</span>
+                    <span class="text-xs text-cyan-200 mt-2 font-mono">50 Questions • 120 Mins</span>
                 </button>
             </div>
             <div class="text-center text-xs text-purple-300/60 pt-4">
@@ -68,6 +78,9 @@
                     <span class="text-xs text-gray-400 block">Question</span>
                     <span id="q-counter" class="font-bold text-lg text-purple-300">1 / 10</span>
                 </div>
+                <div class="text-center">
+                    <span id="active-mode-tag" class="text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/40 font-semibold">Mode</span>
+                </div>
                 <div>
                     <span class="text-xs text-gray-400 block text-right">Time Remaining</span>
                     <span id="timer" class="font-mono font-bold text-xl text-pink-400">00:00</span>
@@ -76,12 +89,18 @@
 
             <div class="bg-slate-900/40 p-6 rounded-xl border border-slate-700 mb-6">
                 <span id="q-category" class="text-xs font-semibold px-2.5 py-0.5 rounded bg-purple-900 text-purple-300 border border-purple-700 uppercase tracking-wider mb-3 inline-block">Topic</span>
-                <p id="q-text" class="text-lg font-medium text-slate-100 mt-1">Question loading...</p>
+                <p id="q-text" class="text-base sm:text-lg font-medium text-slate-100 mt-1 whitespace-pre-line leading-relaxed">Question loading...</p>
             </div>
 
-            <div id="options-container" class="space-y-3 mb-8"></div>
+            <div id="options-container" class="space-y-3 mb-6"></div>
 
-            <div class="flex justify-between items-center">
+            <!-- Navigation Palette -->
+            <div class="mb-6 pt-4 border-t border-slate-700/60">
+                <span class="text-xs text-gray-400 block mb-2">Question Palette:</span>
+                <div id="question-palette" class="flex flex-wrap gap-2 max-h-28 overflow-y-auto pr-1"></div>
+            </div>
+
+            <div class="flex justify-between items-center pt-2 border-t border-slate-700/60">
                 <button id="prev-btn" onclick="navigate(-1)" class="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm font-semibold transition">Previous</button>
                 <button id="next-btn" onclick="navigate(1)" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 rounded-lg text-sm font-semibold transition">Next</button>
                 <button id="submit-btn" onclick="submitQuiz()" class="hidden px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 rounded-lg text-sm font-bold transition shadow-lg">Submit Test</button>
@@ -89,8 +108,9 @@
         </div>
 
         <!-- Result Screen -->
-        <div id="result-screen" class="hidden text-center py-6">
-            <div id="result-badge" class="text-6xl mb-4">🎉</div>
+        <div id="result-screen" class="hidden text-center py-4">
+            <div id="result-badge" class="text-6xl mb-3">🎉</div>
+            <div id="res-mode-badge" class="inline-block px-4 py-1.5 rounded-full bg-purple-500/20 border border-purple-400 text-purple-300 text-sm font-bold mb-3">Mode</div>
             <h2 id="result-title" class="text-2xl sm:text-3xl font-extrabold mb-2"></h2>
             <p id="result-message" class="text-xl font-bold my-4 p-4 rounded-xl"></p>
             
@@ -109,50 +129,150 @@
                 </div>
             </div>
 
-            <button onclick="resetApp()" class="block mx-auto px-8 py-3 bg-purple-600 hover:bg-purple-500 rounded-xl font-bold transition shadow-lg">Try Another Test</button>
+            <!-- Post-Test Question Breakdown -->
+            <div class="text-left mt-8">
+                <h3 class="text-xl font-bold text-purple-300 mb-4 text-center">Detailed Answer Breakdown & Explanations</h3>
+                <div id="review-container" class="space-y-4"></div>
+            </div>
+
+            <button onclick="resetApp()" class="block mx-auto mt-8 px-8 py-3 bg-purple-600 hover:bg-purple-500 rounded-xl font-bold transition shadow-lg">Try Another Test</button>
         </div>
 
     </div>
 
     <script>
-        // GENERAL QUESTION BANK (PAPER 1 + PSYCHOLOGY)
-        const generalQuestionBank = [
-            // Paper 1
-            { topic: "Paper 1: Communication", question: "Which barrier occurs due to specialized technical terms or ambiguous language usage?", options: ["Linguistic/Semantic Barrier", "Psychological Barrier", "Physical Barrier", "Environmental Barrier"], answer: 0 },
-            { topic: "Paper 1: Communication", question: "In classroom teaching, what element allows the instructor to adjust pace and ensure understanding?", options: ["Feedback", "Encoding", "Channel Noise", "Mass Media"], answer: 0 },
-            { topic: "Paper 1: Logical Reasoning", question: "In Indian Logic (Nyaya), which Pramana refers to knowledge gained through comparison and analogy?", options: ["Upamana", "Pratyaksha", "Anumana", "Arthapatti"], answer: 0 },
-            { topic: "Paper 1: Logical Reasoning", question: "What represents the invariable relation between the middle term (Hetu) and major term (Sadhya)?", options: ["Vyapti", "Pramana", "Anupalabdhi", "Shabda"], answer: 0 },
-            { topic: "Paper 1: ICT", question: "Which national initiative provides digital repository access to millions of e-journals and articles?", options: ["e-ShodhSindhu", "SWAYAM", "DIKSHA", "NPTEL"], answer: 0 },
-            // Standard Psychology
-            { topic: "Psychology Unit 1", question: "Which Eastern system emphasizes self-knowledge, Vidya vs. Avidya, and the concept of Nishkama Karma?", options: ["Bhagavad Gita", "Behaviorism", "Structuralism", "Logical Empiricism"], answer: 0 },
-            { topic: "Psychology Unit 2", question: "Which non-parametric test is the equivalent of the one-way independent ANOVA?", options: ["Kruskal-Wallis test", "Mann-Whitney test", "Wilcoxon Signed Rank test", "Friedman test"], answer: 0 },
-            { topic: "Psychology Unit 3", question: "Which attitude measurement scale utilizes bipoles with 7-point rating categories (e.g., Good vs. Bad)?", options: ["Semantic Differential Scale", "Likert Scale", "Guttman Scale", "Stapel Scale"], answer: 0 },
-            { topic: "Psychology Unit 4", question: "Which brain structure acts as the relay station for all sensory modalities except olfaction?", options: ["Thalamus", "Hypothalamus", "Amydgala", "Hippocampus"], answer: 0 },
-            { topic: "Psychology Unit 5", question: "In Signal Detection Theory, what term describes identifying a signal when no signal was actually present?", options: ["False Alarm", "Hit", "Miss", "Correct Rejection"], answer: 0 },
-            { topic: "Psychology Unit 6", question: "Which theory of intelligence proposes the PASS model (Planning, Attention, Simultaneous, Successive)?", options: ["Das, Kar, & Parrila Model", "Gardner Multiple Intelligences", "Cattell Fluid/Crystallized", "Sternberg Triarchic Theory"], answer: 0 },
-            { topic: "Psychology Unit 7", question: "Which stress management intervention involves conscious voluntary relaxation of major skeletal muscle groups?", options: ["Progressive Muscle Relaxation (PMR)", "Biofeedback", "Stress Inoculation Training", "Systematic Desensitization"], answer: 0 },
-            { topic: "Psychology Unit 8", question: "What phenomenon describes individuals expending less effort when working collectively in a group compared to working individually?", options: ["Social Loafing", "Social Facilitation", "Groupthink", "Deindividuation"], answer: 0 },
-            { topic: "Psychology Unit 9", question: "Gerard Egan’s 'Skilled Helper' model of counseling consists of how many primary stages?", options: ["3 Stages (Current, Preferred, Action)", "5 Stages (Intake to Termination)", "2 Stages (Diagnosis and Therapy)", "4 Stages (Assessment, Goal, Action, Evaluation)"], answer: 0 },
-            { topic: "Psychology Unit 10", question: "Which term refers to psychological growth and positive transformation experienced following trauma?", options: ["Post-Traumatic Growth", "Eudaimonic Well-being", "Resilience", "Hedonic Treadmill"], answer: 0 }
-        ];
+        // UPGRADED QUESTION BANK (PAPER 1 & PAPER 2 PSYCHOLOGY WITH MATCH LIST, CHRONOLOGY, MULTI-SELECT)
+        const fullQuestionBank = [
+            // PAPER 1 QUESTIONS
+            { 
+                paper: "Paper 1", 
+                topic: "Paper 1: Communication", 
+                question: "Which barrier occurs due to specialized technical terms or ambiguous language usage?", 
+                options: ["Linguistic/Semantic Barrier", "Psychological Barrier", "Physical Barrier", "Environmental Barrier"], 
+                answer: 0,
+                explanation: "Semantic barriers arise from misunderstandings caused by technical jargon, ambiguous words, or language differences."
+            },
+            { 
+                paper: "Paper 1", 
+                topic: "Paper 1: Logical Reasoning", 
+                question: "In Indian Logic (Nyaya), which Pramana refers to knowledge gained through comparison and analogy?", 
+                options: ["Upamana", "Pratyaksha", "Anumana", "Arthapatti"], 
+                answer: 0,
+                explanation: "Upamana means comparison or analogy (e.g., learning what a wild cow looks like based on its resemblance to a domestic cow)."
+            },
+            { 
+                paper: "Paper 1", 
+                topic: "Paper 1: ICT", 
+                question: "Which national initiative provides digital repository access to millions of e-journals and articles?", 
+                options: ["e-ShodhSindhu", "SWAYAM", "DIKSHA", "NPTEL"], 
+                answer: 0,
+                explanation: "e-ShodhSindhu provides access to qualitative higher education e-resources including full-text peer-reviewed journals."
+            },
 
-        // EXTREME DIFFICULTY PSYCHOLOGY QUESTION BANK (UNITS 1 - 10)
-        const toughPsychologyBank = [
-            { topic: "Psychology Unit 1: Emergence & Paradigms", question: "According to Wilhelm Dilthey's critique of the strict experimental-analytical paradigm (logical empiricism), what fundamental approach should human sciences (Geisteswissenschaften) adopt over causal explanation (Erklären)?", options: ["Verstehen (Empathetic Understanding)", "Reductive Positivism", "Nomothetic Verification", "Behavioral Operant Conditioning"], answer: 0 },
-            { topic: "Psychology Unit 1: Indian Psychology Paradigms", question: "In Integral Yoga and Indian Paradigms of Knowledge, how is the ontological transition from Avidya to Vidya primary operationalized?", options: ["Direct inward realization of Self-Knowledge (Atman/Purusha) bypassing intellectual construct", "Empirical external experimentation via sensory verification", "Strict cognitive modification through S-R conditioning", "Statistical reduction of consciousness variables"], answer: 0 },
-            { topic: "Psychology Unit 2: Advanced Statistics", question: "In Factor Analysis, when factors are correlated in the real world, which factor rotation method mathematically allows non-orthogonal (correlated) factor axes?", options: ["Direct Oblimin / Promax", "Varimax", "Equamax", "Quartimax"], answer: 0 },
-            { topic: "Psychology Unit 2: Research & Experimental Design", question: "When controlling for a continuous nuisance covariate while assessing group differences across multiple categorical independent variables, which statistical technique is mathematically appropriate?", options: ["ANCOVA (Analysis of Covariance)", "MANOVA", "Kruskal-Wallis Test", "Tetrachoric Correlation"], answer: 0 },
-            { topic: "Psychology Unit 3: Psychometrics & Testing", question: "Which specific correlation technique is mathematically designed to correlate two variables when one is a continuous variable and the other is a true natural dichotomy (e.g., Male/Female)?", options: ["Point-Biserial Correlation", "Biserial Correlation", "Tetrachoric Correlation", "Phi Coefficient"], answer: 0 },
-            { topic: "Psychology Unit 4: Biological Basis & Neurophysiology", question: "During the absolute refractory period of a neuronal action potential, why is it physically impossible for another action potential to be initiated regardless of stimulus strength?", options: ["Voltage-gated Sodium (Na+) channels are completely inactivated", "Potassium (K+) channels are entirely closed", "Hyperpolarization has increased threshold voltage", "Neurotransmitters are completely depleted at the presynaptic terminal"], answer: 0 },
-            { topic: "Psychology Unit 5: Perception & Signal Detection", question: "In Signal Detection Theory, if an observer's criterion (beta) becomes extremely conservative, what predictable shifts occur in their response probabilities?", options: ["Hits decrease and False Alarms decrease", "Hits increase and False Alarms increase", "Hits increase and Misses decrease", "False Alarms increase and Correct Rejections decrease"], answer: 0 },
-            { topic: "Psychology Unit 5: Learning & Neurophysiology", question: "Which cellular and synaptic phenomenon, involving NMDA receptor activation and calcium influx in the hippocampus, serves as the primary neural mechanism for Long-Term Potentiation (LTP)?", options: ["Retrograde signaling via Nitric Oxide and AMPA receptor insertion", "Inhibition of GABAergic interneurons only", "Degeneration of dendritic spines", "Depletion of presynaptic acetylcholine stores"], answer: 0 },
-            { topic: "Psychology Unit 6: Cognitive & Intelligence Models", question: "In J.P. Das's PASS Theory of Intelligence (based on Luria's neuro-psychological model), which brain structure is primarily responsible for Planning and Executive Control?", options: ["Prefrontal Cortex (Frontal Lobe)", "Occipito-Parietal Area", "Temporal Lobe", "Basal Ganglia"], answer: 0 },
-            { topic: "Psychology Unit 7: Motivation & Emotion Models", question: "According to Lazarus's Cognitive-Mediational Theory of Emotion, what occurs during 'Secondary Appraisal'?", options: ["Evaluation of personal coping options and resources to handle the stressor", "Assessment of whether the event is positive, irrelevant, or threatening", "Direct physiological autonomic arousal release without cognitive labeling", "Re-evaluation of the initial threat post-behavioral outcome"], answer: 0 },
-            { topic: "Psychology Unit 8: Advanced Social Psychology", question: "According to Tajfel & Turner's Social Identity Theory, under what specific social condition is an individual most likely to engage in Social Creativity strategies rather than Individual Mobility?", options: ["When intergroup status boundaries are perceived as stable and impermeable", "When intergroup status boundaries are highly permeable", "When social identity is weak and personal identity is dominant", "When relative deprivation is completely absent"], answer: 0 },
-            { topic: "Psychology Unit 9: Psychopathology & Interventions", question: "In Dialectical Behavior Therapy (DBT), what represents the fundamental dialectical tension that the therapist works to synthesize during treatment?", options: ["Radical Acceptance of reality vs. The drive for Change and behavioral transformation", "Unconscious conflict resolution vs. Cognitive restructuring", "Classical conditioning vs. Operant extinction", "Ego defense strengthening vs. Id expression"], answer: 0 },
-            { topic: "Psychology Unit 9: Counseling & Psychotherapy", question: "In Albert Ellis's REBT framework, what does the 'D' and 'E' stand for in the expanded ABCDE therapeutic intervention model?", options: ["Disputing irrational beliefs & Effective new philosophy/belief system", "Diagnostic assessment & Evaluative feedback", "Desensitization of phobia & Emotional catharsis", "Differential reinforcement & Extinction protocol"], answer: 0 },
-            { topic: "Psychology Unit 10: Health & Psychoneuroimmunology", question: "In Psychoneuroimmunology, sustained chronic activation of the Hypothalamic-Pituitary-Adrenal (HPA) axis suppresses immune functioning primarily through the prolonged secretion of:", options: ["Cortisol (Glucocorticoids)", "Epinephrine", "Acetylcholine", "Melatonin"], answer: 0 },
-            { topic: "Psychology Unit 10: Emerging Areas & Well-being", question: "According to Ryff's Model of Psychological Well-being (Eudaimonic perspective), which of the following is NOT one of the six core dimensions?", options: ["Subjective Hedonic Pleasure", "Autonomy", "Environmental Mastery", "Personal Growth"], answer: 0 }
+            // PAPER 2 PSYCHOLOGY QUESTIONS (UPGRADED NTA FORMATS)
+            { 
+                paper: "Paper 2", 
+                topic: "Psychology: Match List I & II", 
+                question: "Match List I (Psychological Theorists) with List II (Core Concepts):\n\nList I:\nA. Rollo May\nB. Viktor Frankl\nC. Carl Rogers\nD. Fritz Perls\n\nList II:\n1. Logotherapy\n2. Existential Anxiety\n3. Gestalt Therapy\n4. Unconditional Positive Regard", 
+                options: [
+                    "A-2, B-1, C-4, D-3",
+                    "A-1, B-2, C-3, D-4",
+                    "A-3, B-4, C-1, D-2",
+                    "A-2, B-3, C-4, D-1"
+                ], 
+                answer: 0,
+                explanation: "Rollo May conceptualized Existential Anxiety; Viktor Frankl developed Logotherapy; Carl Rogers introduced Unconditional Positive Regard; Fritz Perls founded Gestalt Therapy."
+            },
+            { 
+                paper: "Paper 2", 
+                topic: "Psychology: Chronological Sequence", 
+                question: "Arrange the following stages of Catecholamine Biosynthesis in the correct physiological sequence:\n\nA. Dopamine\nB. L-DOPA\nC. Tyrosine\nD. Norepinephrine", 
+                options: [
+                    "C ➔ B ➔ A ➔ D",
+                    "B ➔ C ➔ A ➔ D",
+                    "A ➔ B ➔ C ➔ D",
+                    "C ➔ A ➔ B ➔ D"
+                ], 
+                answer: 0,
+                explanation: "The biochemical pathway is: Tyrosine ➔ L-DOPA ➔ Dopamine ➔ Norepinephrine."
+            },
+            { 
+                paper: "Paper 2", 
+                topic: "Psychology: Multi-Select Combination", 
+                question: "Which of the following statements regarding the Central Limit Theorem (CLT) are CORRECT?\n\nA. As sample size increases, the sampling distribution approaches normality.\nB. The population must be strictly normally distributed for CLT to hold.\nC. Standard error decreases as sample size increases.\nD. Mean of the sampling distribution equals the population mean.", 
+                options: [
+                    "A, C and D only",
+                    "A and B only",
+                    "B, C and D only",
+                    "A and C only"
+                ], 
+                answer: 0,
+                explanation: "CLT applies regardless of population distribution provided sample size is large enough (n ≥ 30). Hence B is incorrect."
+            },
+            { 
+                paper: "Paper 2", 
+                topic: "Psychology: Research Methods", 
+                question: "In Factor Analysis, when factors are correlated in the real world, which factor rotation method mathematically allows non-orthogonal (correlated) factor axes?", 
+                options: ["Direct Oblimin / Promax", "Varimax", "Equamax", "Quartimax"], 
+                answer: 0,
+                explanation: "Direct Oblimin and Promax are oblique rotation methods that allow factors to correlate with each other."
+            },
+            { 
+                paper: "Paper 2", 
+                topic: "Psychology: Biological Basis", 
+                question: "During the absolute refractory period of a neuronal action potential, why is it physically impossible for another action potential to be initiated?", 
+                options: ["Voltage-gated Sodium (Na+) channels are completely inactivated", "Potassium (K+) channels are entirely closed", "Hyperpolarization has increased threshold voltage", "Neurotransmitters are completely depleted"], 
+                answer: 0,
+                explanation: "Inactivation gates of voltage-gated Na+ channels close rapidly during peak depolarization and cannot reopen until returning to resting state."
+            },
+            { 
+                paper: "Paper 2", 
+                topic: "Psychology: Testing & Psychometrics", 
+                question: "Which correlation technique correlates two variables when one is continuous and the other is a true natural dichotomy (e.g., Male/Female)?", 
+                options: ["Point-Biserial Correlation", "Biserial Correlation", "Tetrachoric Correlation", "Phi Coefficient"], 
+                answer: 0,
+                explanation: "Point-Biserial correlation is used when one variable is continuous and the other is a true natural dichotomy."
+            },
+            { 
+                paper: "Paper 2", 
+                topic: "Psychology: Perception", 
+                question: "In Signal Detection Theory, if an observer's criterion (beta) becomes extremely conservative, what predictable shift occurs in response probabilities?", 
+                options: ["Hits decrease and False Alarms decrease", "Hits increase and False Alarms increase", "Hits increase and Misses decrease", "False Alarms increase and Correct Rejections decrease"], 
+                answer: 0,
+                explanation: "A conservative criterion requires high certainty before saying 'Yes', reducing both False Alarms and Hits."
+            },
+            { 
+                paper: "Paper 2", 
+                topic: "Psychology: Social Psychology", 
+                question: "According to Tajfel & Turner's Social Identity Theory, when are individuals most likely to engage in Social Creativity rather than Individual Mobility?", 
+                options: ["When intergroup status boundaries are perceived as stable and impermeable", "When intergroup status boundaries are highly permeable", "When social identity is weak and personal identity is dominant", "When relative deprivation is completely absent"], 
+                answer: 0,
+                explanation: "Impermeable boundaries prevent individual mobility, prompting groups to redefine comparative dimensions (social creativity)."
+            },
+            { 
+                paper: "Paper 2", 
+                topic: "Psychology: Therapies & Interventions", 
+                question: "In Albert Ellis's REBT framework, what do 'D' and 'E' represent in the expanded ABCDE therapeutic intervention model?", 
+                options: ["Disputing irrational beliefs & Effective new philosophy/belief system", "Diagnostic assessment & Evaluative feedback", "Desensitization of phobia & Emotional catharsis", "Differential reinforcement & Extinction protocol"], 
+                answer: 0,
+                explanation: "D stands for Disputing irrational beliefs, and E stands for Effective new philosophy or cognitive restructuring."
+            },
+            { 
+                paper: "Paper 2", 
+                topic: "Psychology: Health Psychology", 
+                question: "In Psychoneuroimmunology, sustained chronic activation of the Hypothalamic-Pituitary-Adrenal (HPA) axis suppresses immune functioning primarily through the prolonged secretion of:", 
+                options: ["Cortisol (Glucocorticoids)", "Epinephrine", "Acetylcholine", "Melatonin"], 
+                answer: 0,
+                explanation: "Prolonged Cortisol elevation suppresses T-cell activation and antibody production, weakening immune defense."
+            },
+            { 
+                paper: "Paper 2", 
+                topic: "Psychology: Emergence & Paradigms", 
+                question: "In Integral Yoga and Indian Paradigms of Knowledge, how is the ontological transition from Avidya to Vidya primarily operationalized?", 
+                options: ["Direct inward realization of Self-Knowledge (Atman/Purusha) bypassing intellectual construct", "Empirical external experimentation via sensory verification", "Strict cognitive modification through S-R conditioning", "Statistical reduction of consciousness variables"], 
+                answer: 0,
+                explanation: "Indian paradigms view true liberation (Vidya) as direct internal intuitive realization of Self/Purusha."
+            }
         ];
 
         let currentQuestions = [];
@@ -160,28 +280,40 @@
         let currentIndex = 0;
         let timerInterval = null;
         let totalTimeSeconds = 0;
-        let selectedDuration = 0;
-        let isOnlyPsychologyMode = false;
+        let selectedModeKey = "";
+        let selectedModeTitle = "";
 
-        function startTest(durationMins, numQuestions, toughPsychOnly = false) {
-            selectedDuration = durationMins;
-            isOnlyPsychologyMode = toughPsychOnly;
-            
-            // Choose question pool based on mode
-            let sourceBank = toughPsychOnly ? toughPsychologyBank : generalQuestionBank;
+        const modeTitles = {
+            '10min': '10-Min Speed Run',
+            '30min': '30-Min Practice',
+            '1hour': '1-Hour Power Test',
+            'psychology': 'Only Psychology (Paper 2)',
+            'full_ugc': 'Full UGC NET Replica'
+        };
+
+        function startTest(modeKey, durationMins, numQuestions) {
+            selectedModeKey = modeKey;
+            selectedModeTitle = modeTitles[modeKey] || 'Custom Mode';
+
+            // Filter question pool
+            let sourceBank = (modeKey === 'psychology') 
+                ? fullQuestionBank.filter(q => q.paper === "Paper 2")
+                : fullQuestionBank;
 
             // Shuffle questions and options dynamically
             let shuffled = [...sourceBank].sort(() => 0.5 - Math.random());
             let rawSelected = shuffled.slice(0, Math.min(numQuestions, sourceBank.length));
-            
+
             currentQuestions = rawSelected.map(q => {
                 let optionsWithIndex = q.options.map((opt, i) => ({ text: opt, isCorrect: i === q.answer }));
                 optionsWithIndex.sort(() => 0.5 - Math.random());
                 return {
+                    paper: q.paper,
                     topic: q.topic,
                     question: q.question,
                     options: optionsWithIndex.map(o => o.text),
-                    answer: optionsWithIndex.findIndex(o => o.isCorrect)
+                    answer: optionsWithIndex.findIndex(o => o.isCorrect),
+                    explanation: q.explanation
                 };
             });
 
@@ -202,6 +334,9 @@
 
             document.getElementById('selection-screen').classList.add('hidden');
             document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('active-mode-tag').innerText = `Mode: ${selectedModeTitle}`;
+
+            renderPalette();
             renderQuestion();
         }
 
@@ -210,6 +345,25 @@
             let secs = totalTimeSeconds % 60;
             document.getElementById('timer').innerText = 
                 `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function renderPalette() {
+            let paletteHtml = '';
+            currentQuestions.forEach((_, idx) => {
+                let isAnswered = userAnswers[idx] !== undefined;
+                let isCurrent = idx === currentIndex;
+                
+                let bgClass = isCurrent 
+                    ? 'bg-purple-500 text-white ring-2 ring-pink-400 font-bold' 
+                    : (isAnswered ? 'bg-emerald-600 text-white font-semibold' : 'bg-slate-700 text-gray-300 hover:bg-slate-600');
+
+                paletteHtml += `
+                    <button onclick="jumpToQuestion(${idx})" class="w-8 h-8 rounded-lg text-xs flex items-center justify-center transition-all ${bgClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            document.getElementById('question-palette').innerHTML = paletteHtml;
         }
 
         function renderQuestion() {
@@ -223,8 +377,8 @@
                 let isSelected = userAnswers[currentIndex] === idx;
                 optionsHtml += `
                     <button onclick="selectOption(${idx})" class="w-full text-left p-4 rounded-xl border transition-all flex items-center justify-between ${isSelected ? 'bg-purple-600/40 border-purple-400 text-white shadow-lg' : 'bg-slate-800/60 border-slate-700 hover:bg-slate-700/60 text-slate-200'}">
-                        <span>${opt}</span>
-                        <span class="w-5 h-5 rounded-full border ${isSelected ? 'border-pink-400 bg-pink-500' : 'border-slate-500'} flex items-center justify-center text-xs">
+                        <span class="text-sm sm:text-base">${opt}</span>
+                        <span class="w-5 h-5 rounded-full border ${isSelected ? 'border-pink-400 bg-pink-500' : 'border-slate-500'} flex items-center justify-center text-xs flex-shrink-0 ml-2">
                             ${isSelected ? '✓' : ''}
                         </span>
                     </button>
@@ -240,10 +394,17 @@
                 document.getElementById('next-btn').classList.remove('hidden');
                 document.getElementById('submit-btn').classList.add('hidden');
             }
+
+            renderPalette();
         }
 
         function selectOption(optIndex) {
             userAnswers[currentIndex] = optIndex;
+            renderQuestion();
+        }
+
+        function jumpToQuestion(index) {
+            currentIndex = index;
             renderQuestion();
         }
 
@@ -266,16 +427,15 @@
 
             // LOG TEST SCORE TO RENDER LOGS
             console.log("==========================================");
-            console.log(`📊 NEW TEST COMPLETED BY USER (${isOnlyPsychologyMode ? "ONLY PSYCHOLOGY MODE" : "GENERAL MODE"})`);
+            console.log(`📊 TEST COMPLETED MODE: ${selectedModeTitle}`);
             console.log(`⏰ Time: ${new Date().toLocaleString()}`);
-            console.log(`⏱️ Duration: ${selectedDuration} Mins`);
             console.log(`📝 Score: ${correctCount}/${currentQuestions.length} (${percentage}%)`);
-            console.log(`🎯 Status: ${percentage >= 80 ? 'PASSED (≥80%)' : 'FAILED (<80%)'}`);
             console.log("==========================================");
 
             document.getElementById('quiz-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
 
+            document.getElementById('res-mode-badge').innerText = `Test Mode: ${selectedModeTitle}`;
             document.getElementById('res-total').innerText = currentQuestions.length;
             document.getElementById('res-correct').innerText = correctCount;
             document.getElementById('res-score').innerText = `${percentage}%`;
@@ -288,7 +448,9 @@
                 badge.innerText = '🥳🎉';
                 title.innerText = 'CONGRATULATIONS!';
                 title.className = 'text-2xl sm:text-3xl font-extrabold text-emerald-400';
-                msg.innerText = 'Ab tum ek baat puch sakti ho 🤪';
+                
+                // REWARD MESSAGE
+                msg.innerText = 'Tu Genius h Baba, maan gaya tujhe';
                 msg.className = 'text-xl sm:text-2xl font-bold my-4 p-4 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
 
                 confetti({
@@ -303,6 +465,39 @@
                 msg.innerText = 'Gadhedi padhai kar';
                 msg.className = 'text-xl sm:text-2xl font-bold my-4 p-4 rounded-xl bg-rose-500/20 text-rose-300 border border-rose-500/40';
             }
+
+            // RENDER POST-TEST DETAILED BREAKDOWN
+            let reviewContainer = document.getElementById('review-container');
+            reviewContainer.innerHTML = '';
+
+            currentQuestions.forEach((q, idx) => {
+                let userAnsIdx = userAnswers[idx];
+                let isCorrect = userAnsIdx === q.answer;
+                let userAnsText = userAnsIdx !== undefined ? q.options[userAnsIdx] : "Not Answered";
+                let correctAnsText = q.options[q.answer];
+
+                let cardBorder = isCorrect ? 'border-emerald-500/50 bg-emerald-950/20' : 'border-rose-500/50 bg-rose-950/20';
+
+                reviewContainer.innerHTML += `
+                    <div class="p-5 rounded-xl border ${cardBorder} space-y-2">
+                        <div class="text-xs font-semibold text-purple-300 uppercase">${q.topic}</div>
+                        <div class="font-medium text-slate-100 whitespace-pre-line">Q${idx + 1}. ${q.question}</div>
+                        <div class="text-sm pt-2">
+                            <span class="${isCorrect ? 'text-emerald-400' : 'text-rose-400'} font-semibold">
+                                Your Answer: ${userAnsText}
+                            </span>
+                        </div>
+                        ${!isCorrect ? `
+                            <div class="text-sm text-emerald-400 font-semibold">
+                                Correct Answer: ${correctAnsText}
+                            </div>
+                        ` : ''}
+                        <div class="mt-3 text-xs sm:text-sm bg-slate-900/80 p-3 rounded-lg border border-slate-700/80 text-gray-300">
+                            💡 <strong class="text-purple-300">Concept Breakdown:</strong> ${q.explanation}
+                        </div>
+                    </div>
+                `;
+            });
         }
 
         function resetApp() {
